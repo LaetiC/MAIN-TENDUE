@@ -1,6 +1,6 @@
 .navbar-lewagon {
   justify-content: space-between;
-  background: white;
+  background: transparent;
 }
 
 .navbar-lewagon .navbar-collapse {
@@ -8,5 +8,19 @@
 }
 
 .navbar-lewagon .navbar-brand img {
-  width: 40px;
+  width: 39px;
+  height: 39px;
+  margin-top: 4px;
 }
+
+.navbar-lewagon .navbar-brand #nav-bar-text {
+  width: 21px;
+  margin-left: 9px;
+  height: 22px;
+  margin-top: 10px;
+  margin-right: 5px;
+  font-size: 14px;
+  margin-bottom: -13px;
+}
+
+//make login image and name dynamic
