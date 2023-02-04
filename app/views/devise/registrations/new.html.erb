@@ -5,6 +5,23 @@
   <%= f.error_notification %>
 
   <div class="form-inputs">
+    <%= f.input :first_name,
+                label: "Votre Prénom",
+                required: true,
+                autofocus: true,
+                input_html: { autocomplete: "first_name" }%>
+    <%= f.input :last_name,
+                label: "Votre Nom",
+                required: true,
+                autofocus: true,
+                input_html: { autocomplete: "last_name" }%>
+    <%= f.input :role,
+                label: "Type d'Utilisateur",
+                collection: ["Donateur", "Demandeur"],
+                prompt: 'Sélectionnez votre Type Utilisateur',
+                required: true,
+                autofocus: true,
+                input_html: { autocomplete: "role" }%>
     <%= f.input :email,
                 required: true,
                 autofocus: true,
