@@ -1,10 +1,23 @@
-<h1>Bienvenue sur la Main Tendue</h1>
-<h2>Je m'appelle Robert, Gros...Gros Robert hihi</h2>
-<h3>Je m'appelle Michelle et je suis donatrice</h3>
-<p>Find me in app/views/pages/home.html.erb</p>
+<div class="container-fluid h-100 p-4">
+  <div class="container-logo">
+      <%= image_tag "logo.png", style: 'height:50px' %>
+      <%= image_tag "logo-script.png", style: 'height:30px' %>
+  </div>
+  <div class="container-pitch">
+    <h3>Le réseau social, vraiment social.</h3>
+    <p>Notre mission : mobiliser et outiller les citoyens pour accompagner les plus démunis.</p>
+  </div>
+  <div class="container-btn">
+    <%= link_to "Je m'inscris", new_user_registration_path, class: "btn mb-3"%>
+    <br>
+    <%= link_to "J'ai déjà un compte",  new_user_session_path, class: "btn"%>
+  </div>
+</div>
 
-<button type="button" class="btn">Mon Espace</button>
 
-<%= link_to "Espace donateur", dashboard_path %>
-<br>
-<%= link_to "Espace demandeur", "/requests/new" %>
+
+
+
+<%# <%= link_to "Espace donateur", dashboard_path %>
+<%# <br> %>
+<%# <%= link_to "Espace demandeur", "/requests/new" %>

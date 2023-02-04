@@ -1,0 +1,23 @@
+.container-fluid {
+  display: flex;
+  flex-direction: column;
+}
+.container-logo {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+  align-content: center;
+  gap: 10px;
+}
+
+.container-pitch {
+  padding-top: 100px;
+  padding-bottom: 100px;
+}
+
+.container-btn {
+  margin-top: auto;
+  margin-bottom: 80px;
+  text-align: center;
+}
