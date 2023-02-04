@@ -5,6 +5,9 @@ class Item < ApplicationRecord
   has_one_attached :photo
 
   validates :name, presence: true
-  validates :category, presence: true, presence: true, inclusion: { in: ["Hygiène", "Médical", "Petit électroménager", "Puériculture"],
-  message: "%{value} n'est pas une catégorie valide. Veuillez choisir dans la liste proposée" }
+  validates :category, presence: true, inclusion: {
+    in: ["Hygiène", "Médical", "Petit électroménager", "Puériculture"],
+    message: "%{value} n'est pas une catégorie valide. Veuillez choisir dans la liste proposée"
+  }
+
 end
