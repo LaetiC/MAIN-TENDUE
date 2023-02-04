@@ -3,7 +3,9 @@
     <%= link_to root_path(), class: "navbar-brand" do %>
       <div class="d-flex justify-content-center">
         <%= image_tag "logo.png", id:"titleimg" %>
-        <p id="nav-bar-text"><%= current_user.first_name %></p>
+        <% if user_signed_in? %>
+          <p id="nav-bar-text"><%= current_user.first_name %></p>
+        <% end %>
       </div>
     <% end %>
     <% if user_signed_in? %>
@@ -17,9 +19,7 @@
         </div>
       </div>
     <% else %>
-      <li class="nav-item">
-        <%= link_to "Connexion", new_user_session_path, class: "nav-link" %>
-      </li>
+      <%= link_to "Login", new_user_session_path, class: "nav-link" %>
     <% end %>
   </div>
 </div>
