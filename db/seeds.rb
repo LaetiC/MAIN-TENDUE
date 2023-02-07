@@ -5,3 +5,7 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
+
+
+request = Request.new(status: "En attente", needed_item: "béquilles", category: "Médical")
+request.save!

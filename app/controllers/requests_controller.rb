@@ -1,4 +1,6 @@
 class RequestsController < ApplicationController
+  before_action :set_request, only: %i[show destroy edit update]
+  
   def new
     @request = Request.new
   end
@@ -27,6 +29,18 @@ class RequestsController < ApplicationController
 
   def edit
   end
+  
+  def destroy
+    @request.destroy
+    redirect_to dashboard_path, status: :see_other
+  end
+
+  def index
+    @request = Request.all
+  end
+  
+  def confirmation
+  end
 
 private
 
@@ -34,4 +48,7 @@ private
     params.require(:request).permit(:user_id, :status, :category, :needed_item, :item_id)
   end
 
+  def set_request
+    @request = Request.find(params[:id])
+  end
 end
