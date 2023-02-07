@@ -1,2 +1,29 @@
-<h1>Items#new</h1>
-<p>Find me in app/views/items/new.html.erb</p>
+<h2>Ajoutez votre produit</h2>
+
+<%= simple_form_for @item do |f| %>
+  <%= f.input :name,
+              label: "Nom du produit",
+              placeholder: "Exemple : Attelle",
+              required: true,
+              autofocus: true,
+              input_html: { autocomplete: "name" } %>
+  <%= f.input :description,
+              label: "Description du produit",
+              placeholder: "Indiquez le maximum de détails",
+              required: true,
+              autofocus: true,
+              input_html: { autocomplete: "description" } %>
+  <%= f.input :category,
+              label: "Catégorie",
+              collection: ["Hygiène", "Médical", "Petit électroménager", "Puériculture"],
+              prompt: 'Sélectionnez la catégorie',
+              required: true,
+              autofocus: true,
+              input_html: { autocomplete: "category" } %>
+  <%= f.input :photo,
+              as: :file,
+              label: "Photo du produit",
+              required: true,
+              autofocus: true %>
+  <%= f.button :submit, "Ajouter" %>
+<% end %>
