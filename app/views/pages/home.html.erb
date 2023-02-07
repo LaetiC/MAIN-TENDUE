@@ -8,9 +8,13 @@
     <p>Notre mission : mobiliser et outiller les citoyens pour accompagner les plus démunis.</p>
   </div>
   <div class="container-btn">
-    <%= link_to "Je m'inscris", new_user_registration_path, class: "btn mb-3"%>
-    <br>
-    <%= link_to "J'ai déjà un compte",  new_user_session_path, class: "btn"%>
+    <% if user_signed_in? %>
+      <%= link_to "Entrer", dashboard_path(), class: "btn mb-3"%>
+    <% else %>
+      <%= link_to "Je m'inscris", new_user_registration_path, class: "btn mb-3"%>
+      <br>
+      <%= link_to "J'ai déjà un compte",  new_user_session_path, class: "btn"%>
+    <% end %>
   </div>
 </div>
 
