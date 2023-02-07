@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root to: "pages#home"
 
   resources :requests, except: [:destroy]
-  resources :item, except: [:destroy, :show]
+  resources :items, except: [:destroy, :show]
   get '/requests/:id/confirmation', to: 'requests#confirmation'
 
   get '/dashboard', to: 'pages#dashboard'
