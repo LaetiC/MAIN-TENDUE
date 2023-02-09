@@ -1,5 +1,9 @@
  <%# <%= link_to "validation demande", "/requests/params[:id]/confirmation" %>
 <% @request.category%>
-<p>Hi</p>
 
-
+<div class="container-booking d-flex justify-content-center">
+  <%= simple_form_for [@item, @booking], html:{data:{controller: 'flatpickr'}} do |f| %>
+    <%= f.input :date, as: :string, input_html: {class:"d-none", data: { flatpickr_target: 'date' } }%>
+    <%= f.submit 'Book now!', class: 'btn-primary' %>
+  <% end %>
+</div>

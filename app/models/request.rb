@@ -7,6 +7,8 @@ class Request < ApplicationRecord
   message: "%{value} n'est pas une catégorie valide. Veuillez choisir dans la liste proposée" }
 
   scope :pending, -> { where(status: "en attente de confirmation") }
+  scope :found, -> { where(status: "un object a été trouvé") }
   scope :confirmed, -> { where(status: "confirmé") }
   scope :canceled, -> { where(status: "annulé") }
+  scope :sent, -> { where(status: "reçu") }
 end
