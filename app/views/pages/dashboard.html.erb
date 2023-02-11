@@ -15,9 +15,7 @@
       <div class="tab-pane fade show active" id="nav-pending" role="tabpanel" aria-labelledby="nav-pending-tab">
         <ul class="list-group list-group-flush">
           <%= @pending_requests.each do |request| %>
-            <li class="list-group-item">
-              <%= request.status - %>
-              <%= request.created_at - request.needed_item %>
+            <li class="list-group-item"><%= request.status - request.created_at - request.needed_item %>
               <%= link_to edit_request_path(request) do %>
                 <i class="fa-solid fa-pen"></i>
               <% end %>
@@ -38,16 +36,39 @@
       </div>
     </div>
   </div>
+
+<% elsif current_user.role == "Donateur" %>
+  <div class="white-card" data-controller="visibility">
+    <nav>
+      <div class="nav nav-tabs" id="nav-tab" style="width: 100%" role="tablist">
+        <a class="nav-item nav-link text-center active" id="nav-alert-tab" style="width: 50%" data-toggle="tab" href="#nav-alert" role="tab" aria-controls="nav-alert" aria-selected="true">Mes alertes</a>
+        <a class="nav-item nav-link text-center" id="nav-donation-tab" style="width: 50%" data-toggle="tab" href="#nav-donation" role="tab" aria-controls="nav-donation" aria-selected="false">Mes dons</a>
+      </div>
+    </nav>
+    <div class="tab-content" id="nav-tabContent">
+      <div class="tab-pane fade show active" id="nav-alert" role="tabpanel" aria-labelledby="nav-alert-tab">
+        <%= @donor_requests.each do |request| %>
+          <div class="card-alert" data-visibility-target="hideable">
+            <div>
+              <strong><%= request.created_at - request.needed_item %></strong>
+              <p><%= request.description %></p>
+            </div>
+            <div>
+              <%= link_to create_nested_item_path(request), method: :post do %>
+                <i class="fa-solid fa-check"></i>
+              <% end %>
+              <i class="fa-solid fa-xmark" data-action="visibility#hideTargets"></i>
+            </div>
+          </div>
+        <% end %>
+      </div>
+      <div class="tab-pane fade show active" id="nav-donation" role="tabpanel" aria-labelledby="nav-donation-tab">
+        <ul class="list-group list-group-flush">
+          <%= @requester_answered_requests.each do |request| %>
+            <li class="list-group-item"><%= request.status - request.created_at - request.needed_item %></li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </div>
 <% end %>
-
-
-<%# if request.status == "En recherche"
-  style="color: $mikado-yellow"
-elsif request.status == "Besoin trouvé" || "A la Ressourcerie"
-  style="color: $prussian-blue"
-elsif request.status == "Remis"
-  style="color: $green"
-elsif request.status == "Remis"
-  style="color: $green"
-else request.status == "Annulé"
-  style="color: $red" %>
