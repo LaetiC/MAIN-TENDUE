@@ -10,33 +10,31 @@ class ItemsController < ApplicationController
     @item.save
     if requests_selected.any?
       requests_selected.first.item = @item
-      @request.item.status = "attributed"
-      @request.status = "confirmed"
+      @request.item.status = "object attribué"
+      @request.status = "A la Ressourcerie"
     else
       render :new, status: :unprocessable_entity
     end
-  end
-
-  def create_nested_item
-    @item = Item.new(item_params)
-    set_request
-    @request.item = @item
-    @request.item.status = "created"
-    @request.status = "found"
-    @request.save
-    @item.save
   end
 
   def update
     set_item
     if requests_selected.any?
       requests_selected.first.item = @item
-      @item.status = "attributed"
-      @request.status = "confirmed"
+      @item.status = "object attribué"
+      @request.status = "A la Ressourcerie"
       @item.save
       @request.save
     end
     redirect_to item_index_path(@item)
+  end
+
+  def create_nested_item
+    @request = Request.find(params[:request_id])
+    @item = Item.create(name: @request.needed_item, category: @request.category)
+    @request.item = @item
+    @request.status = "Besoin Trouvé"
+    @request.save
   end
 
   def edit
@@ -69,11 +67,10 @@ class ItemsController < ApplicationController
     requests_selected = []
     requests = Request.all
     requests.each do |request|
-      if request.needed_item == @item.name && request.category == @item.category && request.status == "pending"
+      if request.needed_item == @item.name && request.category == @item.category && request.status == "En recherche"
         requests_selected.push(request)
       end
     end
     requests_selected
   end
-
 end

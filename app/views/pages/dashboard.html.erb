@@ -15,8 +15,11 @@
       <div class="tab-pane fade show active" id="nav-pending" role="tabpanel" aria-labelledby="nav-pending-tab">
         <ul class="list-group list-group-flush">
           <%= @pending_requests.each do |request| %>
-            <li class="list-group-item"><%= request.status - request.created_at - request.needed_item %>
+            <li class="list-group-item"><%= "#{request.status} - #{request.created_at} - #{request.needed_item}" %>
               <%= link_to edit_request_path(request) do %>
+              <%= link_to "Update status",
+                create_nested_item_path(request),
+                data: {turbo_method: :post} %>
                 <i class="fa-solid fa-pen"></i>
               <% end %>
             </li>
@@ -26,7 +29,7 @@
       <div class="tab-pane fade" id="nav-closed" role="tabpanel" aria-labelledby="nav-closed-tab">
         <ul class="list-group list-group-flush">
           <%= @closed_requests.each do |request| %>
-            <li class="list-group-item"><%= request.status - request.created_at - request.needed_item %>
+            <li class="list-group-item"><%= "#{request.status} - #{request.created_at} - #{request.needed_item}" %>
               <%= link_to edit_request_path(request) do %>
                 <i class="fa-solid fa-pen"></i>
               <% end %>
@@ -50,7 +53,7 @@
         <%= @donor_requests.each do |request| %>
           <div class="card-alert" data-visibility-target="hideable">
             <div>
-              <strong><%= request.created_at - request.needed_item %></strong>
+              <strong><%= "#{request.created_at} - #{request.needed_item}"%></strong>
               <p><%= request.description %></p>
             </div>
             <div>
@@ -65,7 +68,7 @@
       <div class="tab-pane fade show active" id="nav-donation" role="tabpanel" aria-labelledby="nav-donation-tab">
         <ul class="list-group list-group-flush">
           <%= @requester_answered_requests.each do |request| %>
-            <li class="list-group-item"><%= request.status - request.created_at - request.needed_item %></li>
+            <li class="list-group-item"><%= "#{request.status} - #{request.created_at} - #{request.needed_item}" %>
           <% end %>
         </ul>
       </div>
