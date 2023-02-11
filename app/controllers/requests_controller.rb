@@ -8,7 +8,6 @@ class RequestsController < ApplicationController
   def create
     @request = Request.new(request_params)
     @items_selected = items_selected
-    @request.status = "pending" #a mettre dans le model
     if @items_selected.any? && @item.status == "available"
       @request.item_id = @items_selected.first
       @request.status = "confirmed"
@@ -22,8 +21,8 @@ class RequestsController < ApplicationController
   def edit
   end
 
-  def destroy
-    @request.destroy
+  def cancel
+    @request.status = "canceled"
     redirect_to dashboard_path, status: :see_other
   end
 
