@@ -12,7 +12,7 @@
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
   </head>
 
-  <body>
+  <body class="<%=@body_class%>">
     <% unless controller.controller_name == "pages" && controller.action_name == "home" %>
       <%= render "shared/navbar" %>
     <% end %>
