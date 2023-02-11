@@ -40,3 +40,17 @@ p {
   font-weight: 400;
   color: $oxford-blue;
 }
+
+.form-control::placeholder {
+  color: $dark-gray;
+  font-size: 13px;
+}
+
+#item_photo {
+  color: $dark-gray;
+  font-size: 13px;
+}
+
+#item_category {
+  font-size: 13px;
+}

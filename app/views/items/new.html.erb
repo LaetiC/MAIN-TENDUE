@@ -1,29 +1,41 @@
-<h2>Ajoutez votre produit</h2>
+<div class="white-card">
+  <div class="my-3">
+    <h2>Ajoutez votre produit</h2>
+  </div>
 
-<%= simple_form_for @item do |f| %>
-  <%= f.input :name,
-              label: "Nom du produit",
-              placeholder: "Exemple : Attelle",
-              required: true,
-              autofocus: true,
-              input_html: { autocomplete: "name" } %>
-  <%= f.input :description,
-              label: "Description du produit",
-              placeholder: "Indiquez le maximum de détails",
-              required: true,
-              autofocus: true,
-              input_html: { autocomplete: "description" } %>
-  <%= f.input :category,
-              label: "Catégorie",
-              collection: ["Hygiène", "Médical", "Petit électroménager", "Puériculture"],
-              prompt: 'Sélectionnez la catégorie',
-              required: true,
-              autofocus: true,
-              input_html: { autocomplete: "category" } %>
-  <%= f.input :photo,
-              as: :file,
-              label: "Photo du produit",
-              required: true,
-              autofocus: true %>
-  <%= f.button :submit, "Ajouter" %>
-<% end %>
+  <div class="d-block">
+    <%= simple_form_for @item do |f| %>
+    <%= f.input :name,
+                label: "Nom du produit",
+                placeholder: "Exemple : Attelle",
+                required: true,
+                autofocus: true,
+                input_html: { autocomplete: "name" } %>
+    <%= f.input :description,
+                label: "Description du produit",
+                placeholder: "Indiquez le maximum de détails",
+                required: true,
+                autofocus: true,
+                input_html: { autocomplete: "description" } %>
+    <%= f.input :category,
+                label: "Catégorie",
+                collection: ["Hygiène", "Médical", "Petit électroménager", "Puériculture"],
+                prompt: 'Sélectionnez la catégorie',
+                required: true,
+                input_html: { autocomplete: "category" } %>
+    <%= f.input :photo,
+                as: :file,
+                label: "Photo du produit",
+                required: true %>
+    <%= f.button :submit, "Ajouter", class: "btn-yellow d-grid mx-auto" %>
+  <% end %>
+  </div>
+</div>
+
+<div class="ms-4 mt-4">
+  <%= link_to "Retour", method: :back, class:"back-link d-inline-flex align-items-center text-decoration-none" do %>
+    <i class="back-link fa-solid fa-arrow-rotate-left"></i>
+    <span class="ms-2">Retour</span>
+
+  <% end %>
+</div>

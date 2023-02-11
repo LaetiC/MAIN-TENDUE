@@ -1,17 +1,21 @@
 <div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
-  <div class="container-fluid">
+  <div class="container d-flex align-items-center">
     <%= link_to root_path(), class: "navbar-brand" do %>
-      <div class="d-flex justify-content-center">
+      <div class="d-flex justify-content-center align-items-center">
         <%= image_tag "logo.png", id:"titleimg" %>
         <% if user_signed_in? %>
-          <p id="nav-bar-text"><%= current_user.first_name %></p>
+          <h2 id="nav-bar-text"><%= current_user.first_name %></h2>
         <% end %>
       </div>
     <% end %>
     <% if user_signed_in? %>
       <div class="d-flex justify-content-center ml-5">
-        <%= link_to "Messages", "#", class: "nav-link nav-bar-text", style:"margin-right: 10px; margin-top: 6px;" %>
-        <%= cl_image_tag current_user.photo.key, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+        <%= link_to "#", class: "nav-link nav-bar-text" do %>
+          <i class="fa-solid fa-envelope fa-lg me-2"></i>
+          <%# <%= link_to "Messages", "#", class: "nav-link nav-bar-text", style:"margin-right: 10px; margin-top: 6px;" %>
+          <%= cl_image_tag current_user.photo.key, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+        <% end %>
+
         <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
           <%= link_to "Tableau de Bord", dashboard_path(), class: "dropdown-item" %>
           <%= link_to "Votre Profil", edit_user_registration_path(), class: "dropdown-item" %>
