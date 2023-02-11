@@ -10,7 +10,7 @@ class RequestsController < ApplicationController
     @items_selected = items_selected
     @request.status = "pending" #a mettre dans le model
     if @items_selected.any? && @item.status == "available"
-      @request.item = @items_selected.first
+      @request.item_id = @items_selected.first
       @request.status = "confirmed"
       @request.save
     end
@@ -32,6 +32,9 @@ class RequestsController < ApplicationController
   end
 
   def confirmation
+  end
+
+  def show
   end
 
   private
