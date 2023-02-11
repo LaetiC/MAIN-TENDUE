@@ -1,6 +1,10 @@
 class ApplicationController < ActionController::Base
-  before_action :authenticate_user!
+  before_action :authenticate_user!, :body_class
   before_action :configure_permitted_parameters, if: :devise_controller?
+
+  def body_class
+    @body_class = "body-requests" if params[:controller] == "requests"
+  end
 
   protected
 

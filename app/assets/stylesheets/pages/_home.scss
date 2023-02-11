@@ -1,6 +1,13 @@
 // Specific CSS for your home-page
 body {
-  background-image: url("background-home-carre.gif");
+  background-image: image-url("background-home-carre.gif");
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+.body-requests {
+  background-image: image-url("background-requests-carre.png");
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;

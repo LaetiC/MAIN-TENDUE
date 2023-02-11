@@ -22,8 +22,8 @@ class RequestsController < ApplicationController
   def edit
   end
 
-  def destroy
-    @request.destroy
+  def cancel
+    @request.status = "canceled"
     redirect_to dashboard_path, status: :see_other
   end
 
@@ -32,6 +32,9 @@ class RequestsController < ApplicationController
   end
 
   def confirmation
+  end
+
+  def show
   end
 
   private

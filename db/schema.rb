@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_11_102110) do
+ActiveRecord::Schema[7.0].define(version: 2023_02_11_155056) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -46,7 +46,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_11_102110) do
     t.string "name"
     t.text "description"
     t.string "category"
-    t.text "status", default: "created"
+    t.text "status", default: "Objet trouvé"
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -56,7 +56,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_11_102110) do
   create_table "requests", force: :cascade do |t|
     t.date "dropoff_date"
     t.bigint "user_id", null: false
-    t.string "status"
+    t.text "status", default: "En recherche"
     t.string "category"
     t.string "needed_item"
     t.bigint "item_id"
