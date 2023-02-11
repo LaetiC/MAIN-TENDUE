@@ -3,51 +3,71 @@
 <% if current_user.role == "Demandeur" %>
   <%= link_to "Faire une nouvelle demande", new_request_path, class: "btn-blue px-3 py-2 mb-3" %>
 
-  <div class="card">
-    <div class="card" style="width: 90%">
-      <div class="card-header">Mes demandes
-        <ul class="nav nav-tabs" id="myTab" role="tablist">
-          <li class="nav-item">
-            <a class="nav-link active" id="pending-tab" data-toggle="tab" href="#pending" role="tab" aria-controls="pending" aria-selected="true">Demandes en attente</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" id="confirmed-tab" data-toggle="tab" href="#confirmed" role="tab" aria-controls="confirmed" aria-selected="false">Demandes Confirmées</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link disabled" id="canceled-tab" data-toggle="tab" href="#canceled" role="tab" aria-controls="canceled" aria-selected="false">Demandes Annulées</a>
-          </li>
+  <div class="white-card">
+    <h3>Mes Demandes</h3>
+    <nav>
+      <div class="nav nav-tabs" id="nav-tab" style="width: 100%" role="tablist">
+        <a class="nav-item nav-link text-center active" id="nav-pending-tab" style="width: 50%" data-toggle="tab" href="#nav-pending" role="tab" aria-controls="nav-pending" aria-selected="true">En cours</a>
+        <a class="nav-item nav-link text-center" id="nav-closed-tab" style="width: 50%" data-toggle="tab" href="#nav-closed" role="tab" aria-controls="nav-closed" aria-selected="false">Clôturées</a>
+      </div>
+    </nav>
+    <div class="tab-content" id="nav-tabContent">
+      <div class="tab-pane fade show active" id="nav-pending" role="tabpanel" aria-labelledby="nav-pending-tab">
+        <ul class="list-group list-group-flush">
+          <%= @pending_requests.each do |request| %>
+            <li class="list-group-item"><%= request.status - request.created_at - request.needed_item %>
+              <%= link_to edit_request_path(request) do %>
+                <i class="fa-solid fa-pen"></i>
+              <% end %>
+            </li>
+          <% end %>
         </ul>
       </div>
-      <div class="tab-content" id="myTabContent">
-        <div class="tab-pane fade show active" id="pending" role="tabpanel" aria-labelledby="pending-tab">
-          <ul class="list-group list-group-flush">
-            <%= @pending_requests.each do |request| %>
-              <li class="list-group-item"><%= request.created_at - request.needed_item - request.status %>
-                <%= link_to edit_request_path(request) do %>
-                  <i class="fa-solid fa-pen"></i>
-                <% end %>
-              </li>
-            <% end %>
-          </ul>
-        </div>
-        <div class="tab-pane fade show active" id="confirmed" role="tabpanel" aria-labelledby="confirmed-tab">
-          <ul class="list-group list-group-flush">
-            <%= @confirmed_requests.each do |request| %>
-              <li class="list-group-item"><%= request.created_at - request.needed_item - request.status %>
-                <%= link_to edit_request_path(request) do %>
-                  <i class="fa-solid fa-pen"></i>
-                <% end %>
-              </li>
-            <% end %>
-          </ul>
-        </div>
-        <div class="tab-pane fade show active" id="canceled" role="tabpanel" aria-labelledby="canceled-tab">
-          <ul class="list-group list-group-flush">
-            <%= @canceled_requests.each do |request| %>
-              <li class="list-group-item"><%= request.created_at - request.needed_item - request.status %></li>
-            <% end %>
-          </ul>
-        </div>
+      <div class="tab-pane fade" id="nav-closed" role="tabpanel" aria-labelledby="nav-closed-tab">
+        <ul class="list-group list-group-flush">
+          <%= @closed_requests.each do |request| %>
+            <li class="list-group-item"><%= request.status - request.created_at - request.needed_item %>
+              <%= link_to edit_request_path(request) do %>
+                <i class="fa-solid fa-pen"></i>
+              <% end %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+<% elsif current_user.role == "Donateur" %>
+  <div class="white-card" data-controller="visibility">
+    <nav>
+      <div class="nav nav-tabs" id="nav-tab" style="width: 100%" role="tablist">
+        <a class="nav-item nav-link text-center active" id="nav-alert-tab" style="width: 50%" data-toggle="tab" href="#nav-alert" role="tab" aria-controls="nav-alert" aria-selected="true">Mes alertes</a>
+        <a class="nav-item nav-link text-center" id="nav-donation-tab" style="width: 50%" data-toggle="tab" href="#nav-donation" role="tab" aria-controls="nav-donation" aria-selected="false">Mes dons</a>
+      </div>
+    </nav>
+    <div class="tab-content" id="nav-tabContent">
+      <div class="tab-pane fade show active" id="nav-alert" role="tabpanel" aria-labelledby="nav-alert-tab">
+        <%= @donor_requests.each do |request| %>
+          <div class="card-alert" data-visibility-target="hideable">
+            <div>
+              <strong><%= request.created_at - request.needed_item %></strong>
+              <p><%= request.description %></p>
+            </div>
+            <div>
+              <%= link_to create_nested_item_path(request), method: :post do %>
+                <i class="fa-solid fa-check"></i>
+              <% end %>
+              <i class="fa-solid fa-xmark" data-action="visibility#hideTargets"></i>
+            </div>
+          </div>
+        <% end %>
+      </div>
+      <div class="tab-pane fade show active" id="nav-donation" role="tabpanel" aria-labelledby="nav-donation-tab">
+        <ul class="list-group list-group-flush">
+          <%= @requester_answered_requests.each do |request| %>
+            <li class="list-group-item"><%= request.status - request.created_at - request.needed_item %></li>
+          <% end %>
+        </ul>
       </div>
     </div>
   </div>
