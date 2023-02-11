@@ -5,11 +5,9 @@ class PagesController < ApplicationController
   end
 
   def dashboard
-    @requester_requests = current_user.requests
-    @donor_requests = Request.all
-    @answered_requests = current_user.answered_requests
-    @canceled_requests = current_user.requests.canceled
-    @confirmed_requests = current_user.requests.confirmed
+    @donor_requests = Request.where(status: "En recherche")
+    @requester_answered_requests = current_user.requests
+    @closed_requests = current_user.requests.closed
     @pending_requests = current_user.requests.pending
   end
 end

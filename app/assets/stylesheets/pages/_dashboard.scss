@@ -1,3 +1,18 @@
 a {
   text-decoration: none;
 }
+
+.nav-tabs {
+  border-color: transparent;
+}
+
+.nav-link {
+  color: $prussian-blue;
+}
+
+.nav-tabs .nav-link.active {
+  background-color: transparent;
+  border-color: transparent;
+  border-bottom-color: $prussian-blue;
+  color: $prussian-blue;
+}
