@@ -7,11 +7,41 @@ class ItemsController < ApplicationController
 
   def create
     @item = Item.new(item_params)
-    if @item.save
+    if @item.request?
+      @item.request.status = "found"
+      @item.save
+      end
+    else 
+
       redirect_to items_path()
     else
       render :new, status: :unprocessable_entity
     end
+  end
+
+  def update
+    set_request
+    @request.update(status: "found") if item_found?
+    redirect_to dashboard_path
+  end
+
+  def request_found?
+    requests = Requests.all
+    requests_found = requests.select do |request|
+      request.needed_item == @item.name && request.category == @item.category && request.status == "pending"
+    end
+    requests_found.any?
+  end
+
+  def requests_selected
+    requests_selected = []
+    requests = Request.all
+    requests.each do |request|
+      if request.needed_item == @item.name && request.category == @item.category && request.status == "pending"
+        requests_selected.push(request)
+      end
+    end
+    requests_selected
   end
 
   def update
