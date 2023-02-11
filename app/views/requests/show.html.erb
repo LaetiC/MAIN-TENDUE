@@ -6,14 +6,14 @@
     <h3 class="mb-4"> N'oubliez pas de consulter votre messagerie régulièrement ! </h3>
     <p class="mb-4"> A très vite ! </p>
   <% else %>
-    <h3> Bonne nouvelle ! </h3>
-    <h3> Nous avons ce dont vous avez besoin ! </h3>
-    <p> Faites votre choix puis sélectionnez votre option de retrait. </p>
-    <h3> Produits disponibles : </h3>
+
+  <h3> Bonne nouvelle ! </h3>
+  <h3> Nous avons ce dont vous avez besoin ! </h3>
+  <p> Faites votre choix puis sélectionnez votre option de retrait. </p>
+  <h3> Produits disponibles : </h3>
     <% @items.each do |item| %>
       <% item.photo %>
       <% item.name %>
     <% end %>
   <% end %>
-
 </div>

@@ -13,4 +13,5 @@ class Item < ApplicationRecord
   scope :created, -> { where(status: "objet trouvé") }
   scope :available, -> { where(status: "objet disponible") }
   scope :attributed, -> { where(status: "object attribué") }
+
 end

@@ -8,9 +8,10 @@ class RequestsController < ApplicationController
   def create
     @request = Request.new(request_params)
     @items_selected = items_selected
-    if @items_selected.any? && @item.status == "available"
-      @request.item_id = @items_selected.first
-      @request.status = "confirmed"
+    @request.status = "En recherche" #a mettre dans le model
+    if @items_selected.any? && @item.status == "object disponible"
+      @request.item = @items_selected.first
+      @request.status = "A la Ressourcerie"
       @request.save
     end
     @request.user = current_user
@@ -50,9 +51,9 @@ class RequestsController < ApplicationController
     items_selected = []
     items = Item.all
     items.each do |item|
-      if item.name == @request.needed_item && item.category == @request.category && item.status == "available"
+      if item.name == @request.needed_item && item.category == @request.category && item.status == "object disponible"
         items_selected.push(item)
-        item.status = "attributed"
+        item.status = "object attribué"
         item.save
       end
     end

@@ -8,6 +8,6 @@ class PagesController < ApplicationController
     @donor_requests = Request.where(status: "En recherche")
     @requester_answered_requests = current_user.requests
     @closed_requests = current_user.requests.closed
-    @pending_requests = current_user.requests.pending
+    @pending_requests = Request.where(status:"pending", user: current_user) #current_user.requests.pending
   end
 end
