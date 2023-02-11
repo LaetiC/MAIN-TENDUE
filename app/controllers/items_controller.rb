@@ -5,10 +5,12 @@ class ItemsController < ApplicationController
 
   def create
     @item = Item.new(item_params)
-    @request_selected = request_selected
-    @request_selected.first.item_id = @item.id
-    @request_selected.first.status = "found"
-    if @item.save
+    if @item.request?
+      @item.request.status = "found"
+      @item.save
+      end
+    else 
+
       redirect_to items_path()
     else
       render :new, status: :unprocessable_entity
