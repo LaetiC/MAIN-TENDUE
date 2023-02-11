@@ -4,7 +4,10 @@
 <%# <p><%= @request.needed_item %>
 
 <div class="white-card">
-  <% if @item.id %>
+  <% @request.id %>
+  <% @request %>
+
+  <% if @request.item_id? %>
     <h3> Bonne nouvelle ! </h3>
     <h3> Nous avons ce dont vous avez besoin ! </h3>
     <p> Faites votre choix puis sélectionnez votre option de retrait. </p>
