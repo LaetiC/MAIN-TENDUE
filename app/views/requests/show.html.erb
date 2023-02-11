@@ -1,23 +1,19 @@
-<%# <h2>Votre Reservation</h2>
-<%# <p><%= @request.status %>
-<%# <p><%= @request.category %>
-<%# <p><%= @request.needed_item %>
-
-<div class="white-card">
-  <% if @item.id %>
+<div class="white-card px-4">
+  <% if @request.item_id? == false %>
+    <h3 class="my-4"> Votre produit n'est pas encore disponible. </h3>
+    <p class="mb-4"> Ne vous inquiétez pas, votre demande a bien été enregistrée par la ressourcerie Le Poule. </p>
+    <p class="mb-4"> Nous vous enverrons un message dès que nous recevons le produit que vous cherchez. </p>
+    <h3 class="mb-4"> N'oubliez pas de consulter votre messagerie régulièrement ! </h3>
+    <p class="mb-4"> A très vite ! </p>
+  <% else %>
     <h3> Bonne nouvelle ! </h3>
     <h3> Nous avons ce dont vous avez besoin ! </h3>
     <p> Faites votre choix puis sélectionnez votre option de retrait. </p>
     <h3> Produits disponibles : </h3>
-    <%= @items.each do |item| %>
-      <%= item.photo %>
-      <%= item.name %>
+    <% @items.each do |item| %>
+      <% item.photo %>
+      <% item.name %>
     <% end %>
-  <% else %>
-    <h3> Votre produit n'est pas encore disponible. </h3>
-    <p> Ne vous inquiétez pas, votre demande a bien été enregistrée par la ressourcerie Le Poule. </p>
-    <p> Nous vous enverrons un message dès que nous recevons le produit que vous cherchez. </p>
-    <h3> N'oubliez pas de consulter votre messagerie régulièrement ! </h3>
-    <p> A très vite ! </p>
   <% end %>
+
 </div>
