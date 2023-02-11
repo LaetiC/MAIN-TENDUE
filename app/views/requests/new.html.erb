@@ -1,5 +1,16 @@
  <%# <%= link_to "validation demande", "/requests/params[:id]/confirmation" %>
-<% @request.category%>
-<p>Hi</p>
-
-
+<div class="card white-card">
+  <h2>Faites votre demande ici :</h2>
+  <%= simple_form_for @request do |f| %>
+    <%= f.input :category,
+                label: "Catégorie",
+                collection: ["Hygiène", "Paramédical", "Petit électroménager", "Puériculture"],
+                prompt: 'Sélectionnez votre catégorie de besoin' %>
+    <%= f.input :needed_item,
+                label: "Votre besoin ?" %>
+    <%= f.input :description,
+                label: "Précisez votre demande",
+                as: :text %>
+    <%= f.submit 'Envoyer ma demande', class: "btn my-3" %>
+  <% end %>
+</div>

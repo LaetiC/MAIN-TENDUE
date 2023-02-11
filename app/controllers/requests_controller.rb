@@ -1,6 +1,6 @@
 class RequestsController < ApplicationController
   before_action :set_request, only: %i[show destroy edit update]
-  
+
   def new
     @request = Request.new
   end
@@ -29,7 +29,7 @@ class RequestsController < ApplicationController
 
   def edit
   end
-  
+
   def destroy
     @request.destroy
     redirect_to dashboard_path, status: :see_other
@@ -38,7 +38,7 @@ class RequestsController < ApplicationController
   def index
     @request = Request.all
   end
-  
+
   def confirmation
   end
 
