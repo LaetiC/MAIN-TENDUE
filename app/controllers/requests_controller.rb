@@ -7,24 +7,16 @@ class RequestsController < ApplicationController
 
   def create
     @request = Request.new(request_params)
-    if @request.item? == true
-      @request.status = "confirmed"
-    else
-      @request.status = "pending"
-    end
-    @request.item = @item
-    @request.user = current_user
-    @request.save
-    redirect_to request_path(@request)
-  end
-
-  def update
-    set_request
-    if @request.item? == true
+    @items_selected = items_selected
+    @request.status = "pending" #a mettre dans le model
+    if @items_selected.any? && @item.status == "available"
+      @request.item = @items_selected.first
       @request.status = "confirmed"
       @request.save
     end
-    redirect_to dashboard_path
+    @request.user = current_user
+    @request.save
+    redirect_to request_path(@request)
   end
 
   def edit
@@ -42,13 +34,26 @@ class RequestsController < ApplicationController
   def confirmation
   end
 
-private
+  private
 
   def request_params
-    params.require(:request).permit(:user_id, :status, :category, :needed_item, :item_id)
+    params.require(:request).permit(:category, :needed_item)
   end
 
   def set_request
     @request = Request.find(params[:id])
+  end
+
+  def items_selected
+    items_selected = []
+    items = Item.all
+    items.each do |item|
+      if item.name == @request.needed_item && item.category == @request.category && item.status == "available"
+        items_selected.push(item)
+        item.status = "attributed"
+        item.save
+      end
+    end
+    items_selected
   end
 end
