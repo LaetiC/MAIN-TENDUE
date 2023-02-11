@@ -17,9 +17,6 @@
           <% @pending_requests.each do |request| %>
             <li class="list-group-item"><%= "#{request.status} - #{request.created_at} - #{request.needed_item}" %>
               <%= link_to edit_request_path(request) do %>
-              <%= link_to "Update status",
-                create_nested_item_path(request),
-                data: {turbo_method: :post} %>
                 <i class="fa-solid fa-pen"></i>
               <% end %>
             </li>
@@ -57,7 +54,7 @@
               <p><%= request.description %></p>
             </div>
             <div>
-              <%= link_to create_nested_item_path(request), method: :post do %>
+              <%= link_to create_nested_item_path(request), data: {turbo_method: :post} do %>
                 <i class="fa-solid fa-check"></i>
               <% end %>
               <i class="fa-solid fa-xmark" data-action="visibility#hideTargets"></i>
