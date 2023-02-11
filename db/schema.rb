@@ -46,7 +46,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_11_155056) do
     t.string "name"
     t.text "description"
     t.string "category"
-    t.text "status", default: "Objet trouvé"
+    t.text "status", default: "created"
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
