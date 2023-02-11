@@ -7,5 +7,5 @@
 #   Character.create(name: "Luke", movie: movies.first)
 
 
-request = Request.new(status: "En attente", needed_item: "béquilles", category: "Médical")
+request = Request.new(status: "En attente", needed_item: "béquilles", category: "Paramédical")
 request.save!

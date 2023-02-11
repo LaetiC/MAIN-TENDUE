@@ -1,2 +1,19 @@
-<h1>Items#index</h1>
-<p>Find me in app/views/items/index.html.erb</p>
+<div class="white-card">
+  <div class="d-block">
+    <%= form_with url: items_path, method: :get do |form| %>
+      <%= form.select :category, ["Hygiène", "Paramédical", "Petit électroménager", "Puériculture"], prompt: "Sélectionner la catégorie" %>
+      <%= form.text_field :query,
+                        class: "form-control",
+                        placeholder: "Quel est votre besoin ?",
+                        value: params[:query] %>
+      <%= form.submit "Lancer la recherche", class: "btn-yellow d-grid mx-auto" %>
+    <% end %>
+  </div>
+
+  <div>
+    <%= @items.each do |item| %>
+      <%= item.photo %>
+      <%= item.name %>
+    <% end %>
+  </div>
+</div>

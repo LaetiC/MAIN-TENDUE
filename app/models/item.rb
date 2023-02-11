@@ -6,7 +6,7 @@ class Item < ApplicationRecord
 
   validates :name, presence: true
   validates :category, presence: true, inclusion: {
-    in: ["Hygiène", "Médical", "Petit électroménager", "Puériculture"],
+    in: ["Hygiène", "Paramédical", "Petit électroménager", "Puériculture"],
     message: "%{value} n'est pas une catégorie valide. Veuillez choisir dans la liste proposée"
   }
 

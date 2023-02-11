@@ -1,4 +1,6 @@
 class ItemsController < ApplicationController
+  before_action :set_item, only: %i[update edit destroy]
+
   def new
     @item = Item.new
   end
@@ -63,6 +65,9 @@ class ItemsController < ApplicationController
   # end
 
   private
+  def set_item
+    @item = Item.find(params[:id])
+  end
 
   def item_params
     params.require(:item).permit(:name, :category, :description, :photo)
