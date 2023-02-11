@@ -1,5 +1,25 @@
 .btn {
   background-color: $mikado-light;
+  min-width: 10rem;
+  border-radius: 2rem;
+}
+
+.btn-yellow {
+  background-color: $mikado-light;
+  min-width: 10rem;
+  border-radius: 2rem;
+  margin-top: 4rem;
+}
+
+.back-link {
+  color: $mikado-yellow;
+}
+
+.btn-blue {
+  background-color: $prussian-blue;
   min-width: 150px;
   border-radius: 30px;
+  color: white;
 }
+
+
