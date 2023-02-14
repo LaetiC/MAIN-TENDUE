@@ -7,12 +7,12 @@
     <h3>Mes Demandes</h3>
     <nav>
       <div class="nav nav-tabs" id="nav-tab" style="width: 100%" role="tablist">
-        <a class="nav-item nav-link text-center active" id="nav-pending-tab" style="width: 50%" data-toggle="tab" href="#nav-pending" role="tab" aria-controls="nav-pending" aria-selected="true">En cours</a>
-        <a class="nav-item nav-link text-center" id="nav-closed-tab" style="width: 50%" data-toggle="tab" href="#nav-closed" role="tab" aria-controls="nav-closed" aria-selected="false">Clôturées</a>
+        <button class="nav-link active" id="nav-pending-tab" style="width: 50%" data-bs-toggle="tab" data-bs-target="#nav-pending" type="button" role="tab" aria-controls="nav-pending" aria-selected="true">En cours</button>
+        <button class="nav-link" id="nav-closed-tab" style="width: 50%" data-bs-toggle="tab" data-bs-target="#nav-closed" type="button" role="tab" aria-controls="nav-closed" aria-selected="false">Clôturées</button>
       </div>
     </nav>
     <div class="tab-content" id="nav-tabContent">
-      <div class="tab-pane fade show active" id="nav-pending" role="tabpanel" aria-labelledby="nav-pending-tab">
+      <div class="tab-pane fade show active" id="nav-pending" role="tabpanel" aria-labelledby="nav-pending-tab" tabindex="0">
         <ul class="list-group list-group-flush">
           <% @pending_requests.each do |request| %>
             <li class="list-group-item"><%= "#{request.status} - #{request.created_at} - #{request.needed_item}" %>
@@ -23,7 +23,7 @@
           <% end %>
         </ul>
       </div>
-      <div class="tab-pane fade" id="nav-closed" role="tabpanel" aria-labelledby="nav-closed-tab">
+      <div class="tab-pane fade" id="nav-closed" role="tabpanel" aria-labelledby="nav-closed-tab" tabindex="0">
         <ul class="list-group list-group-flush">
           <% @closed_requests.each do |request| %>
             <li class="list-group-item"><%= "#{request.status} - #{request.created_at} - #{request.needed_item}" %>
@@ -41,12 +41,12 @@
   <div class="white-card" data-controller="visibility">
     <nav>
       <div class="nav nav-tabs" id="nav-tab" style="width: 100%" role="tablist">
-        <a class="nav-item nav-link text-center active" id="nav-alert-tab" style="width: 50%" data-toggle="tab" href="#nav-alert" role="tab" aria-controls="nav-alert" aria-selected="true">Mes alertes</a>
-        <a class="nav-item nav-link text-center" id="nav-donation-tab" style="width: 50%" data-toggle="tab" href="#nav-donation" role="tab" aria-controls="nav-donation" aria-selected="false">Mes dons</a>
+        <button class="nav-link active" id="nav-alert-tab" style="width: 50%" data-bs-toggle="tab" data-bs-target="#nav-alert" type="button" role="tab" aria-controls="nav-alert" aria-selected="true">Mes alertes</button>
+        <button class="nav-link" id="nav-donation-tab" style="width: 50%" data-bs-toggle="tab" data-bs-target="#nav-donation" type="button" role="tab" aria-controls="nav-donation" aria-selected="false">Mes dons</button>
       </div>
     </nav>
     <div class="tab-content" id="nav-tabContent">
-      <div class="tab-pane fade show active" id="nav-alert" role="tabpanel" aria-labelledby="nav-alert-tab">
+      <div class="tab-pane fade show active" id="nav-alert" role="tabpanel" aria-labelledby="nav-alert-tab" tabindex="0">
         <% @donor_requests.each do |request| %>
           <div class="card-alert" data-visibility-target="hideable">
             <div>
@@ -62,7 +62,7 @@
           </div>
         <% end %>
       </div>
-      <div class="tab-pane fade show active" id="nav-donation" role="tabpanel" aria-labelledby="nav-donation-tab">
+      <div class="tab-pane fade" id="nav-donation" role="tabpanel" aria-labelledby="nav-donation-tab" tabindex="0">
         <ul class="list-group list-group-flush">
           <% @requester_answered_requests.each do |request| %>
             <li class="list-group-item"><%= "#{request.status} - #{request.created_at} - #{request.needed_item}" %>
