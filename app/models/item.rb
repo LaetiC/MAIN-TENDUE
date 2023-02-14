@@ -10,8 +10,8 @@ class Item < ApplicationRecord
     message: "%{value} n'est pas une catégorie valide. Veuillez choisir dans la liste proposée"
   }
 
-  scope :created, -> { where(status: "objet trouvé") }
-  scope :available, -> { where(status: "objet disponible") }
-  scope :attributed, -> { where(status: "object attribué") }
+  scope :created, -> { where(status: "Objet trouvé") }
+  scope :available, -> { where(status: "Objet disponible") }
+  scope :attributed, -> { where(status: "Objet attribué") }
 
 end

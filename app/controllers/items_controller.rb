@@ -10,7 +10,7 @@ class ItemsController < ApplicationController
     @item.save
     if requests_selected.any?
       requests_selected.first.item = @item
-      @request.item.status = "object attribué"
+      @request.item.status = "Attribué"
       @request.status = "A la Ressourcerie"
     else
       render :new, status: :unprocessable_entity
@@ -21,7 +21,7 @@ class ItemsController < ApplicationController
     set_item
     if requests_selected.any?
       requests_selected.first.item = @item
-      @item.status = "object attribué"
+      @item.status = "Attribué"
       @request.status = "A la Ressourcerie"
       @item.save
       @request.save
@@ -34,6 +34,15 @@ class ItemsController < ApplicationController
     @item = Item.create(name: @request.needed_item, category: @request.category)
     @request.item = @item
     @request.status = "Besoin Trouvé"
+    @request.save
+  end
+
+  def update_nested_item # item_delivered_at_ressourcerie
+    set_request
+    @item = @request.item
+    @item.status = "Attribué"
+    @request.status = "A la ressourcerie"
+    @item.save
     @request.save
   end
 
