@@ -11,5 +11,7 @@ Rails.application.routes.draw do
 
   post '/requests/:request_id/items', to: 'items#create_nested_item', as: :create_nested_item
 
-  #à rajouter les routes pour la messagerie
+  resources :chatrooms, only: :show do
+    resources :messages, only: :create
+  end
 end
