@@ -66,6 +66,7 @@
         <ul class="list-group list-group-flush">
           <% @requester_answered_requests.each do |request| %>
             <li class="list-group-item"><%= "#{request.status} - #{request.created_at} - #{request.needed_item}" %>
+            <%= link_to "Objet déposé", update_nested_item_path(request), data: {turbo_method: :patch} %></li>
           <% end %>
         </ul>
       </div>
