@@ -7,5 +7,5 @@ class Request < ApplicationRecord
   message: "%{value} n'est pas une catégorie valide. Veuillez choisir dans la liste proposée" }
 
   scope :pending, -> { where(status: ["En recherche", "Besoin trouvé", "A la Ressourcerie"]) } #syntaxe à vérifier pour status multiples
-  scope :closed, -> { where(status: ["Remis", "Annulé"]) } #syntaxe à vérifier pour status multiples
+  scope :closed, -> { where(status: ["Remis", "Annulée"]) } #syntaxe à vérifier pour status multiples
 end
