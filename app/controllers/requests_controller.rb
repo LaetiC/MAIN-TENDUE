@@ -1,5 +1,5 @@
 class RequestsController < ApplicationController
-  before_action :set_request, only: %i[show destroy edit update]
+  before_action :set_request, only: %i[show confirmation destroy edit edit_pickup update_pickup_ressourcerie update_pickup_maraude update_delivered]
 
   def new
     @request = Request.new
@@ -23,7 +23,7 @@ class RequestsController < ApplicationController
   end
 
   def cancel
-    @request.status = "canceled"
+    @request.status = "Annulée"
     redirect_to dashboard_path, status: :see_other
   end
 
@@ -35,6 +35,27 @@ class RequestsController < ApplicationController
   end
 
   def show
+  end
+
+  def edit_pickup
+  end
+
+  def update_pickup_ressourcerie
+    @request.pickup_type = "Retrait ressourcerie"
+    @request.save
+    redirect_to dashboard_path, status: :see_other
+    # @request.pickup_date
+  end
+
+  def update_pickup_maraude
+    @request.pickup_type = "Dépôt maraude"
+    @request.save
+    redirect_to dashboard_path, status: :see_other
+  end
+
+  def update_delivered
+    @request.status = "Remis"
+    @request.save
   end
 
   private
