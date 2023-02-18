@@ -1,4 +1,6 @@
 class RequestsController < ApplicationController
+  include ActionView::Helpers::UrlHelper
+  include ActionView::Helpers::SanitizeHelper
   before_action :set_request, only: %i[show confirmation destroy edit edit_pickup update_pickup_ressourcerie update_pickup_maraude update_delivered]
 
   def new
@@ -7,13 +9,14 @@ class RequestsController < ApplicationController
 
   def create
     @request = Request.new(request_params)
-    @items_selected = items_selected
-    @request.status = "En recherche" #a mettre dans le model
-    if @items_selected.any? && @item.status == "Objet disponible"
-      @request.item = @items_selected.first
-      @request.status = "A la Ressourcerie"
-      @request.save
+    @item = Item.where("name ILIKE ? AND category = ? AND status = ?", "%#{@request.needed_item}%", "#{@request.category}", "Objet disponible").first
+
+    if @item.present?
+      @item.update(status: "A la ressourcerie")
+    else
+      Message.create(content: "Avez-vous l'objet suivant : #{strip_tags(@request.needed_item)} ? #{link_to 'Oui', dashboard_path}", chatroom_id: "1", user: User.first)
     end
+
     @request.user = current_user
     @request.save
     redirect_to request_path(@request)
@@ -59,6 +62,10 @@ class RequestsController < ApplicationController
     redirect_to dashboard_path, status: :see_other
   end
 
+  def update
+
+  end
+
   private
 
   def request_params
@@ -67,18 +74,5 @@ class RequestsController < ApplicationController
 
   def set_request
     @request = Request.find(params[:id])
-  end
-
-  def items_selected
-    items_selected = []
-    items = Item.all
-    items.each do |item|
-      if item.name == @request.needed_item && item.category == @request.category && item.status == "Objet disponible"
-        items_selected.push(item)
-        item.status = "Objet attribué"
-        item.save
-      end
-    end
-    items_selected
   end
 end
