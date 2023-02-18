@@ -1,5 +1,5 @@
 class RequestsController < ApplicationController
-  before_action :set_request, only: %i[show confirmation destroy edit edit_pickup update_pickup_ressourcerie update_pickup_maraude update_delivered]
+  before_action :set_request, only: %i[show update confirmation destroy edit edit_pickup update_pickup_ressourcerie update_pickup_maraude update_delivered]
 
   def new
     @request = Request.new
@@ -40,17 +40,12 @@ class RequestsController < ApplicationController
   def edit_pickup
   end
 
-  def update_pickup_ressourcerie
-    @request.pickup_type = "Retrait ressourcerie"
-    @request.save
-    redirect_to dashboard_path, status: :see_other
-    # @request.pickup_date
-  end
-
-  def update_pickup_maraude
-    @request.pickup_type = "Dépôt maraude"
-    @request.save
-    redirect_to dashboard_path, status: :see_other
+  def update
+    if @request.update(update_params)
+      redirect_to dashboard_path
+    else
+      render :edit_pickup
+    end
   end
 
   def update_delivered
@@ -62,6 +57,10 @@ class RequestsController < ApplicationController
 
   def request_params
     params.require(:request).permit(:category, :needed_item)
+  end
+
+  def update_params
+    params.require(:request).permit(:pickup_type)
   end
 
   def set_request
