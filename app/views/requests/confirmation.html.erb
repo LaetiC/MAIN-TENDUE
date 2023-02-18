@@ -1,0 +1,21 @@
+<div class="white-card">
+  <h2>Votre réservation est confirmée ! </h2>
+  <div>
+    <%= @request.needed_item %>
+    <%= @request.category %>
+  </div>
+  <div>
+    <% if @request.pickup_type == "Dépôt Maraude" %>
+      <h3>Prochaine maraude</h3>
+      <p>Samedi 25 Février 2023</p>
+      <p>19:00 - 22:00</p>
+      <h3>Point de rendez-vous</h3>
+      <p>WESTERN UNION</p>
+      <p>15 Bd de la Villette, 75018 Paris</p>
+    <% else %>
+      <h3>Ressourcerie Le Poulpe</h3>
+      <p>4 Bis Rue d'Oran, 75018 Paris, France</p>
+      <p>11:00 - 20:00</p>
+    <% end %>
+  </div>
+</div>

@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   resources :requests, except: [:destroy, :index]
 
   resources :items, except: [:destroy, :show]
-  get '/requests/:id/confirmation', to: 'requests#confirmation'
+  get '/requests/:id/confirmation', to: 'requests#confirmation', as: :request_confirmation
 
   get '/dashboard', to: 'pages#dashboard'
 
