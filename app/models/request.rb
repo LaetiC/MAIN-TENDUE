@@ -6,6 +6,6 @@ class Request < ApplicationRecord
   validates :category, presence: true, inclusion: { in: ["Hygiène", "Paramédical", "Petit électroménager", "Puériculture"],
   message: "%{value} n'est pas une catégorie valide. Veuillez choisir dans la liste proposée" }
 
-  scope :pending, -> { where(status: ["En recherche", "Besoin trouvé", "A la Ressourcerie"]) } #syntaxe à vérifier pour status multiples
-  scope :closed, -> { where(status: ["Remis", "Annulé"]) } #syntaxe à vérifier pour status multiples
+  scope :pending, -> { where(status: ["En recherche", "Besoin trouvé", "A la ressourcerie"]) } #syntaxe à vérifier pour status multiples
+  scope :closed, -> { where(status: ["Remis", "Annulée"]) } #syntaxe à vérifier pour status multiples
 end

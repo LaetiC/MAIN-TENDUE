@@ -16,3 +16,29 @@ a {
   border-bottom-color: $prussian-blue;
   color: $prussian-blue;
 }
+
+.fa-pen {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+}
+
+.fa-check {
+  color: green;
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  font-size: larger;
+}
+
+.fa-xmark {
+  color: red;
+  position: absolute;
+  bottom: 0.5rem;
+  right: 0.8rem;
+  font-size: larger;
+}
+
+.list-group {
+  flex-grow: 1;
+}

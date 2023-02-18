@@ -56,6 +56,7 @@ class RequestsController < ApplicationController
   def update_delivered
     @request.status = "Remis"
     @request.save
+    redirect_to dashboard_path, status: :see_other
   end
 
   private
