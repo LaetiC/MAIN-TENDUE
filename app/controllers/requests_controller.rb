@@ -65,7 +65,7 @@ class RequestsController < ApplicationController
   end
 
   def update_params
-    params.require(:request).permit(:pickup_type)
+    params.require(:request).permit(:pickup_type, :pickup_date)
   end
 
   def set_request
