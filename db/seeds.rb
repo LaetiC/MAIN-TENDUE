@@ -7,5 +7,7 @@
 #   Character.create(name: "Luke", movie: movies.first)
 
 
-request = Request.new(status: "En attente", needed_item: "béquilles", category: "Paramédical")
-request.save!
+User.create(first_name: "Ressourcerie", last_name: "Le Poule", email: "ressourcerielepoule@gmail.com", role:"Donateur", password:"azerty")
+User.create(first_name: "Jean Michel", last_name: "Boudin", email: "michmich@gmail.com", role:"Demandeur", password:"azerty")
+User.create(first_name: "Marie", last_name: "Dupont", email: "mariedupont@gmail.com", role:"Donateur", password:"azerty")
+Chatroom.create(name: "general")
