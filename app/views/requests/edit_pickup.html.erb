@@ -1,5 +1,30 @@
-<h1> Choose your pickup</h1>
-<p><%= link_to "Maraude",  update_pickup_maraude_path(@request), data: {turbo_method: :patch} %></p>
-<p><%= link_to "Ressourcerie",  update_pickup_ressourcerie_path(@request), data: {turbo_method: :patch} %></p>
-
 <%# ajout calendrier pour choix date %>
+
+<div class="white-card">
+  <h3 class="mb-4">Choisir votre mode de retrait</h3>
+
+  <div class="grid-display mb-5">
+    <div class="card-small">
+      <%= image_tag "maraude.jpg" %>
+      <p><%#= link_to "Maraude",  update_pickup_maraude_path(@request), data: {turbo_method: :patch} %></p>
+      <h3> Prochaine maraude </h3>
+      <p> Lundi 20 Février 2023 </p>
+      <p> 19:00 - 22:00 </p>
+    </div>
+    <div class="card-small">
+      <%= image_tag "ressourcerie.jpg" %>
+      <p><%#= link_to "Ressourcerie",  update_pickup_ressourcerie_path(@request), data: {turbo_method: :patch} %></p>
+      <h3> Ressourcerie Le Poulpe </h3>
+      <p> 58 rue Doudeauville - 75018 Paris </p>
+      <p> 11:00 - 20:00 </p>
+    </div>
+  </div>
+  <div mt-5>
+  <%= simple_form_for @request do |form| %>
+    <div>
+      <%= form.input :pickup_type, collection: ["Dépôt Maraude", "Retrait Ressourcerie"] %>
+    </div>
+    <%= form.button :submit, "Confirmer", class: "btn-yellow d-grid mx-auto" %>
+  <% end %>
+  </div>
+</div>
