@@ -1,7 +1,7 @@
 class RequestsController < ApplicationController
   include ActionView::Helpers::UrlHelper
   include ActionView::Helpers::SanitizeHelper
-  before_action :set_request, only: %i[show update confirmation destroy edit edit_pickup update_pickup_ressourcerie update_pickup_maraude update_delivered]
+  before_action :set_request, only: %i[show update confirmation destroy edit edit_pickup update_pickup update_delivered]
 
   def new
     @request = Request.new
@@ -57,9 +57,6 @@ class RequestsController < ApplicationController
     redirect_to dashboard_path, status: :see_other
   end
 
-  def update
-
-  end
 
   private
 
