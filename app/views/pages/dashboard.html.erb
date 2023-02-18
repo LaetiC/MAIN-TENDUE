@@ -69,7 +69,7 @@
           <li class="list-group-item row" data-visibility-target="hideable">
             <div class="col-md-11">
               <p><strong><%= "#{request.created_at.strftime("%d.%m.%Y")} - #{request.needed_item}"%></strong></p>
-              <p><%= request.description %></p>
+              <p><%= "#{request.description}" %></p>
             </div>
             <div class="col-md-1">
               <%= link_to create_nested_item_path(request), data: {turbo_method: :post} do %>
