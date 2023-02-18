@@ -45,7 +45,7 @@ class RequestsController < ApplicationController
 
   def update
     if @request.update(update_params)
-      redirect_to dashboard_path
+      redirect_to request_confirmation_path
     else
       render :edit_pickup
     end
