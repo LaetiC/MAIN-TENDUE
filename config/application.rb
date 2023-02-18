@@ -6,6 +6,10 @@ require "rails/all"
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
+config.i18n.available_locales = ['en', 'fr']
+config.i18n.default_locale = 'en'
+config.i18n.locale = 'fr'
+
 module MAINTendue
   class Application < Rails::Application
     config.generators do |generate|

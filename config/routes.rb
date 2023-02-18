@@ -14,6 +14,9 @@ Rails.application.routes.draw do
 
   get '/requests/:id/pickuptype', to: "requests#edit_pickup", as: :edit_pickup
 
+  patch '/requests/:id/delivered', to: 'requests#update_delivered', as: :update_delivered
 
-  #à rajouter les routes pour la messagerie
+  resources :chatrooms, only: :show do
+    resources :messages, only: :create
+  end
 end
