@@ -2,9 +2,12 @@ import { Controller } from "@hotwired/stimulus";
 import flatpickr from "flatpickr";
 
 export default class extends Controller {
-  static targets = [ 'pickup_date' ]
+  static targets = [ 'pickup_date', 'pickup_type' ]
+  update() {
+    console.log(this.pickup_typeTarget)
+  }
+  // faire la fonction if avec le resultat de la fonction update qui ecoute le changement de valeur de Pickup_target. 
   connect() {
-    console.log(this.pickup_dateTarget)
     flatpickr(this.pickup_dateTarget, {
         enableTime: true,
         time_24hr: true,

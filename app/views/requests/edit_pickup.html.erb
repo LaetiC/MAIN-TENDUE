@@ -19,12 +19,12 @@
       <p> 11:00 - 20:00 </p>
     </div>
   </div>
-  <div mt-5>
+  <div mt-5 data-controller="flatpickr">
     <%= simple_form_for @request do |form| %>
       <div>
         <%= form.input :pickup_type,
                         collection: ["Dépôt Maraude", "Retrait Ressourcerie"],
-                        input_html: {data: {pickuptype_autocomplete_target: "pickuptype"}},
+                        input_html: {data: {pickuptype_autocomplete_target: "pickuptype", action: "change->flatpickr#update", flatpickr_target: 'pickup_type' }},
                         wrapper_html: {data: {controller: "pickuptype-autocomplete"}} %>
       </div>
       <%= form.input :pickup_date, label: "A quelle date souhaitez-vous le retirer?", as: :string, input_html: {data: { flatpickr_target: 'pickup_date' } }%>
