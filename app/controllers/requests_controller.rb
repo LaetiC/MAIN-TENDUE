@@ -61,11 +61,11 @@ class RequestsController < ApplicationController
   private
 
   def request_params
-    params.require(:request).permit(:category, :needed_item)
+    params.require(:request).permit(:category, :needed_item, :description)
   end
 
   def update_params
-    params.require(:request).permit(:pickup_type)
+    params.require(:request).permit(:pickup_type, :pickup_date)
   end
 
   def set_request
