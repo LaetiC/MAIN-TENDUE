@@ -9,18 +9,18 @@ export default class extends Controller {
   }
   maraude(event) {
     this.pickuptypeTarget.value = "Dépôt Maraude"
-    // event.currentTarget.classList.toggle("selected")
     this.maraudeTarget.classList.toggle("selected")
     if (this.ressourcerieTarget.classList.contains("selected")) {
       this.ressourcerieTarget.classList.toggle("selected")
     }
+    this.dispatch('added')
   }
   ressourcerie (event) {
     this.pickuptypeTarget.value = "Retrait Ressourcerie"
-    // event.currentTarget.classList.toggle("selected")
     this.ressourcerieTarget.classList.toggle("selected")
     if (this.maraudeTarget.classList.contains("selected")) {
       this.maraudeTarget.classList.toggle("selected")
     }
+    this.dispatch('added')
   }
 }

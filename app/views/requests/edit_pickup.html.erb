@@ -5,14 +5,12 @@
 
   <div class="grid-display mb-5">
     <div class="card-small" data-value="Dépôt Maraude" data-action="click->pickuptype-autocomplete#maraude" data-pickuptype-autocomplete-target="maraude">
-      <p><%#= link_to "Maraude",  update_pickup_maraude_path(@request), data: {turbo_method: :patch} %></p>
       <h3> Prochaine maraude </h3>
       <p> Mardi et Jeudi </p>
       <p> 19:00 - 22:00 </p>
       <%= image_tag "maraude.jpg" %>
     </div>
     <div class="card-small" data-value="Retrait Ressourcerie" data-action="click->pickuptype-autocomplete#ressourcerie" data-pickuptype-autocomplete-target="ressourcerie">
-      <p><%#= link_to "Ressourcerie",  update_pickup_ressourcerie_path(@request), data: {turbo_method: :patch} %></p>
       <h3> Ressourcerie Le Poulpe </h3>
       <p> 58 rue Doudeauville - 75018 Paris </p>
       <p> 11:00 - 20:00 </p>
@@ -23,9 +21,9 @@
   <div data-controller="flatpickr">
     <%= simple_form_for @request do |form| %>
       <%= form.input :pickup_type,
-                        collection: ["Dépôt Maraude", "Retrait Ressourcerie"],
-                        input_html: {data: {pickuptype_autocomplete_target: "pickuptype", action: "change->flatpickr#update", flatpickr_target: 'pickup_type' }},
-      <%= form.input :pickup_date, label: "A quelle date souhaitez-vous le retirer?", as: :string, input_html: {data: { flatpickr_target: 'pickup_date' } }%>
+                      collection: ["Dépôt Maraude", "Retrait Ressourcerie"],
+                      input_html: {data: {pickuptype_autocomplete_target: "pickuptype", action: "change->flatpickr#update", flatpickr_target: 'pickup_type' }}%>,
+      <%= form.input :pickup_date, label: "A quelle date souhaitez-vous le retirer?", as: :string, input_html: {data: { flatpickr_target: 'pickup_date' } }%>,
       <%= form.button :submit, "Confirmer", class: "btn-yellow d-grid mx-auto" %>
     <% end %>
   </div>
