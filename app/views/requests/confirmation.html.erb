@@ -1,21 +1,38 @@
 <div class="white-card">
   <h2>Votre réservation est confirmée ! </h2>
   <div>
-    <%= @request.needed_item %>
-    <%= @request.category %>
+    <div>
+      <i class="fa-solid fa-hand-holding-heart"></i>
+    </div>
+    <div>
+      <h3><%= @request.needed_item %></h3>
+      <p><%= @request.category %></p>
+    </div>
   </div>
-  <div>
-    <% if @request.pickup_type == "Dépôt Maraude" %>
-      <h3>Prochaine maraude</h3>
-      <p>Samedi 25 Février 2023</p>
-      <p>19:00 - 22:00</p>
-      <h3>Point de rendez-vous</h3>
-      <p>WESTERN UNION</p>
-      <p>15 Bd de la Villette, 75018 Paris</p>
-    <% else %>
+  <% if @request.pickup_type == "Dépôt Maraude" %>
+    <div>
+      <div>
+        <i class="fa-solid fa-calendar"></i>
+      </div>
+      <div>
+        <h3>Maraude sélectionnée</h3>
+        <p><%= @request.pickup_date.strftime("%d.%m.%Y") %>: 19:00 - 22:00</p>
+      </div>
+    </div>
+    <div>
+      <div>
+        <i class="fa-solid fa-location-dot"></i>
+      </div>
+      <div>
+        <h3>Point de rendez-vous</h3>
+        <p>WESTERN UNION</p>
+        <p>15 Bd de la Villette, 75018 Paris</p>
+      </div>
+    </div>
+    <% elsif @request.pickup_type == "Retrait Ressourcerie" %>
       <h3>Ressourcerie Le Poulpe</h3>
-      <p>4 Bis Rue d'Oran, 75018 Paris, France</p>
-      <p>11:00 - 20:00</p>
+      <p><i class="fa-solid fa-location-dot"></i> 4 Bis Rue d'Oran, 75018 Paris, France</p>
+      <p><i class="fa-solid fa-calendar"></i> <%= @request.pickup_date.strftime("%d.%m.%Y") %>: 11:00 - 20:00</p>
     <% end %>
   </div>
 </div>
