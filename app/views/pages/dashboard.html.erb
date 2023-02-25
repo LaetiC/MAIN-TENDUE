@@ -22,7 +22,7 @@
                 <p><strong><%= "#{request.created_at.strftime("%d.%m.%Y")} - #{request.needed_item}" %></strong></p>
                 <p><strong>Statut: </strong><%= request.status %>
                 <% if request.pickup_type? %>
-                  <p><strong>Option de Retrait: </strong><%="#{request.pickup_type}, le: #{request.pickup_date.strftime("%d.%m.%Y")}" %>
+                  <p><strong>Option de Retrait: </strong><%="#{request.pickup_type}, le: #{request.pickup_date&.strftime("%d.%m.%Y")}" %>
                   <p><%= link_to "Confirmez la réception", update_delivered_path(request), data: {turbo_method: :patch}, class: "btn-yellow px-2 py-1" %></p>
                 <% elsif request.status == "A la ressourcerie" && request.pickup_type == nil %>
                   <p><%= link_to "Choisir votre option de retrait", edit_pickup_path(request), class: "btn-yellow px-2 py-1" %></p>
@@ -59,8 +59,8 @@
   <div class="white-card" style="overflow: scroll" data-controller="visibility">
     <nav>
       <div class="nav nav-tabs" style="width: 100%" role="tablist">
-        <button class="nav-link active" id="nav-alert-tab" style="width: 50%" data-bs-toggle="tab" data-bs-target="#nav-alert" type="button" role="tab" aria-controls="nav-alert" aria-selected="true">Mes alertes</button>
-        <button class="nav-link" id="nav-donation-tab" style="width: 50%" data-bs-toggle="tab" data-bs-target="#nav-donation" type="button" role="tab" aria-controls="nav-donation" aria-selected="false">Mes dons</button>
+        <button class="nav-link active justify-content-center" id="nav-alert-tab" style="width: 50%" data-bs-toggle="tab" data-bs-target="#nav-alert" type="button" role="tab" aria-controls="nav-alert" aria-selected="true">Mes alertes</button>
+        <button class="nav-link justify-content-center" id="nav-donation-tab" style="width: 50%" data-bs-toggle="tab" data-bs-target="#nav-donation" type="button" role="tab" aria-controls="nav-donation" aria-selected="false">Mes dons</button>
       </div>
     </nav>
     <div class="tab-content" id="nav-tabContent">
@@ -85,7 +85,7 @@
         <% end %>
       </div>
       <div class="tab-pane fade" id="nav-donation" role="tabpanel" aria-labelledby="nav-donation-tab" tabindex="0">
-        <h1 class="mt-3">A déposer en ressourcerie</h1>
+        <h3 class="dashboard-subtitle mt-3">Dons à déposer</h3>
         <ul class="list-group list-group-flush">
           <% @donor_pending_requests.reverse.each do |request| %>
             <li class="list-group-item row">
@@ -95,7 +95,9 @@
             </li>
           <% end %>
         </ul>
-        <h1 class="mt-3">Historique d'objets</h1>
+        <div class="separation-line mt-3">
+        </div>
+        <h3 class="dashboard-subtitle mt-3">Historique des dons</h3>
         <ul class="list-group list-group-flush">
           <% @donor_answered_requests.reverse.each do |request| %>
             <li class="list-group-item row">

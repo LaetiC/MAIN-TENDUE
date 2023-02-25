@@ -37,6 +37,11 @@ h3 {
   color: $oxford-blue;
 }
 
+.dashboard-subtitle {
+  color: $prussian-blue;
+  font-size: 16px;
+}
+
 p {
   font-style: normal;
   font-size: 13px;
@@ -59,10 +64,18 @@ p {
 }
 
 .fa-envelope {
-  color: $mikado-light
+  color: $mikado-light;
+}
+
+#navbar-envelope {
+  color: $oxford-blue;
 }
 
 .back-link {
   text-decoration: none;
-  color: $mikado-light
+  color: $mikado-light;
+}
+
+.separation-line {
+  border-top: 1px dotted $dark-gray;
 }

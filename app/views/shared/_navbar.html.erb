@@ -12,11 +12,11 @@
       <div class="d-flex justify-content-center ml-5">
         <% if current_user.role == "Donateur" %>
           <%= link_to "/chatrooms/1_path", class: "nav-link nav-bar-text" do %>
-            <i class="fa-solid fa-envelope fa-lg me-2 pr-4"></i>
+            <i class="fa-solid fa-envelope fa-lg me-2 pr-4" id="navbar-envelope"></i>
           <% end %>
         <% else %>
           <%= link_to "/chatrooms/2_path", class: "nav-link nav-bar-text" do %>
-            <i class="fa-solid fa-envelope fa-lg me-2 pr-4"></i>
+            <i class="fa-solid fa-envelope fa-lg me-2 pr-4" id="navbar-envelope"></i>
           <% end %>
         <% end %>
         <div>
