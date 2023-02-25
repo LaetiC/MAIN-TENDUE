@@ -35,4 +35,15 @@ li {
   list-style: none;
 }
 
+#nav-bar-text {
+  display: flex;
+  align-items: center;
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  padding-right: 15px;
+}
+
 //make login image and name dynamic
