@@ -4,7 +4,9 @@ import flatpickr from "flatpickr";
 export default class extends Controller {
   static targets = [ 'pickup_date', 'pickup_type' ]
 
+
   update() {
+    console.log("update")
     if (this.pickup_typeTarget.value === "Retrait Ressourcerie") {
       flatpickr(this.pickup_dateTarget, {
           altInput: true,
@@ -23,6 +25,7 @@ export default class extends Controller {
           },
       });
     } else if (this.pickup_typeTarget.value === "Dépôt Maraude") {
+      console.log(this.pickup_dateTarget.value)
       flatpickr(this.pickup_dateTarget, {
           altInput: true,
           altFormat: "F j, Y",
