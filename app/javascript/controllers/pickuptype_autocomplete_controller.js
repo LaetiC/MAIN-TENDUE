@@ -6,8 +6,6 @@ export default class extends Controller {
   static targets = ["pickuptype", "maraude", "ressourcerie", "pickup_date"]
 
   connect() {
-    console.log("coucou")
-    console.log(this.pickuptypeTarget)
     this.ressourcerie()
   }
 
@@ -15,7 +13,6 @@ export default class extends Controller {
     this.pickuptypeTarget.value = "Dépôt Maraude"
     this.maraudeTarget.classList.add("selected")
     this.ressourcerieTarget.classList.remove("selected")
-    console.log("salut")
     this.updateMaraude()
   }
 
@@ -23,7 +20,6 @@ export default class extends Controller {
     this.pickuptypeTarget.value = "Retrait Ressourcerie"
     this.ressourcerieTarget.classList.add("selected")
     this.maraudeTarget.classList.remove("selected")
-    console.log("helo")
     this.updateRessourcerie()
   }
 

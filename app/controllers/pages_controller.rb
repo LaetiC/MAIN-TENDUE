@@ -6,7 +6,8 @@ class PagesController < ApplicationController
 
   def dashboard
     @donor_requests = Request.where(status: "En recherche")
-    @donor_answered_requests = Request.where(status: ["Besoin trouvé", "A la ressourcerie", "Remis", "Annulée"]) #à modifier quand lien entre Request et Item sera fait
+    @donor_pending_requests = Request.where(status: ["Besoin trouvé"])
+    @donor_answered_requests = Request.where(status: ["A la ressourcerie", "Remis", "Annulée"])
     @closed_requests = current_user.requests.closed
     @pending_requests = current_user.requests.pending
   end

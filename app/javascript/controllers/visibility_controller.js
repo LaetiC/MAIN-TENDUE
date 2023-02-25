@@ -3,19 +3,19 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
   static targets = [ "hideable" ]
 
-  showTargets() {
+  show() {
     this.hideableTargets.forEach(el => {
       el.hidden = false
     });
   }
 
-  hideTargets() {
+  hide() {
     this.hideableTargets.forEach(el => {
       el.hidden = true
     });
   }
 
-  toggleTargets() {
+  toggle() {
     this.hideableTargets.forEach((el) => {
       el.hidden = !el.hidden
     });
