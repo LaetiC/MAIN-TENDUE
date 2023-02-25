@@ -5,12 +5,12 @@
     <%= link_to "Faire une nouvelle demande", new_request_path, class: "btn-blue px-3 py-2 mb-3" %>
   </div>
 
-  <div class="white-card">
+  <div class="white-card" style="overflow: scroll">
     <h3>Mes Demandes</h3>
     <nav>
       <div class="nav nav-tabs" id="nav-tab" style="width: 100%" role="tablist">
-        <button class="nav-link active" id="nav-pending-tab" style="width: 50%" data-bs-toggle="tab" data-bs-target="#nav-pending" type="button" role="tab" aria-controls="nav-pending" aria-selected="true">En cours</button>
-        <button class="nav-link" id="nav-closed-tab" style="width: 50%" data-bs-toggle="tab" data-bs-target="#nav-closed" type="button" role="tab" aria-controls="nav-closed" aria-selected="false">Clôturées</button>
+        <button class="nav-link active justify-content-center" id="nav-pending-tab" style="width: 50%" data-bs-toggle="tab" data-bs-target="#nav-pending" type="button" role="tab" aria-controls="nav-pending" aria-selected="true">En cours</button>
+        <button class="nav-link justify-content-center" id="nav-closed-tab" style="width: 50%" data-bs-toggle="tab" data-bs-target="#nav-closed" type="button" role="tab" aria-controls="nav-closed" aria-selected="false">Clôturées</button>
       </div>
     </nav>
     <div class="tab-content" id="nav-tabContent">
@@ -56,12 +56,11 @@
   </div>
 
 <% elsif current_user.role == "Donateur" %>
-  <div class="white-card" style="overflow: scroll" data-controller="visibility display-tab"
-    data-display-donation-tab-value="<%= params[:display_donation] || false %>">
+  <div class="white-card" style="overflow: scroll" data-controller="visibility display-tab">
     <nav>
       <div class="nav nav-tabs" style="width: 100%" role="tablist">
         <button class="nav-link active justify-content-center" id="nav-alert-tab" style="width: 50%" data-bs-toggle="tab" data-bs-target="#nav-alert" type="button" role="tab" aria-controls="nav-alert" aria-selected="true">Mes alertes</button>
-        <button class="nav-link justify-content-center" id="nav-donation-tab" style="width: 50%" data-bs-toggle="tab" data-bs-target="#nav-donation" type="button" role="tab" aria-controls="nav-donation" aria-selected="false">Mes dons</button>
+        <button class="nav-link justify-content-center" data-valueDonation=<%= params[:display_donation] || false %> id="nav-donation-tab" data-display-tab-target="donationTab" style="width: 50%" data-bs-toggle="tab" data-bs-target="#nav-donation" type="button" role="tab" aria-controls="nav-donation" aria-selected="false">Mes dons</button>
       </div>
     </nav>
     <div class="tab-content" id="nav-tabContent">
@@ -91,7 +90,7 @@
           <% @donor_pending_requests.reverse.each do |request| %>
             <li class="list-group-item row">
               <p><strong><%= "#{request.created_at.strftime("%d.%m.%Y")} - #{request.needed_item.capitalize}"%></strong></p>
-              <p><strong> Status : </strong>Déposez l'objet en ressourcerie le <%="#{request.dropoff_date}"%></p>
+              <p><strong> Status : </strong>A déposer le <%="#{request.dropoff_date.strftime("%d.%m.%Y")}"%></p>
               <p><%= link_to "Confirmez le dépôt", update_nested_item_path(request), class: "btn-yellow px-3 py-2", data: {turbo_method: :patch} %></p>
             </li>
           <% end %>
