@@ -35,18 +35,12 @@ class RequestsController < ApplicationController
   end
 
   def confirmation
-    @ressourceries = User.where(address: "4 Bis Rue d'Oran, 75018 Paris, France")
-    # @users.each do |user|
-    #   if user.address?
-    #     @ressourceries.push(user)
-    #   end
-    # end
-    # The `geocoded` scope filters only flats with coordinates
-    @markers = @ressourceries.map do |ressourcerie|
-      {
-        lat: ressourcerie.latitude,
-        lng: ressourcerie.longitude
-      }
+    if @request.pickup_type == "Dépôt Maraude"
+      @address = "67 Rue Myrha, 75018 Paris"
+      @markers = [{lat: 48.886600, lng: 2.350450 }]
+    elsif @request.pickup_type == "Retrait Ressourcerie"
+      @address = "4 Bis Rue d'Oran, 75018 Paris, France"
+      @markers = [{lat: 48.8890471, lng: 2.3540006 }]
     end
   end
 

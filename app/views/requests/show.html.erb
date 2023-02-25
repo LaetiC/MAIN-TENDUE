@@ -5,9 +5,6 @@
     <p class="mb-4"> Nous vous enverrons un message dès que nous recevons le produit que vous cherchez. </p>
     <h3 class="mb-4"> N'oubliez pas de consulter votre messagerie régulièrement ! </h3>
     <p class="mb-4"> A très vite ! </p>
-    <%= link_to "Retour au Tableau de bord", dashboard_path %>
-    <br>
-    <%= link_to "Retour à la Messagerie", "/chatrooms/2_path" %>
   <% else %>
 
   <h3> Bonne nouvelle ! </h3>
@@ -20,3 +17,6 @@
     <% end %>
   <% end %>
 </div>
+
+<p><i class="fa-solid fa-arrow-rotate-left mt-3 ms-4" ></i><%= link_to "Retour au tableau de bord", dashboard_path(), class: "back-link ms-2" %></p>
+<p><i class="fa-solid fa-envelope ms-4"></i><%= link_to "Retour à la Messagerie", "/chatrooms/1_path", class: "back-link ms-2" %></p>

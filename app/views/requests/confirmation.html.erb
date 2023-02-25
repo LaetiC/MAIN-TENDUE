@@ -1,45 +1,61 @@
 <div class="white-card">
   <h2>Votre réservation est confirmée ! </h2>
-  <div>
-    <div>
+  <div class="d-flex align-items-center">
+    <div class="m-2" >
       <i class="fa-solid fa-hand-holding-heart"></i>
     </div>
-    <div>
+    <div class="ms-2 pt-3">
       <h3><%= @request.needed_item %></h3>
       <p><%= @request.category %></p>
     </div>
   </div>
   <% if @request.pickup_type == "Dépôt Maraude" %>
-    <div>
-      <div>
+    <div class="d-flex align-items-center">
+      <div class="m-2">
         <i class="fa-solid fa-calendar"></i>
       </div>
-      <div>
+      <div class="ms-2 pt-3">
         <h3>Maraude sélectionnée</h3>
-        <p><%= @request.pickup_date.strftime("%d.%m.%Y") %>: 19:00 - 22:00</p>
+        <p><%= @request.pickup_date.strftime("%d.%m.%Y") %> : 19:00 - 22:00</p>
       </div>
     </div>
-    <div>
-      <div>
+    <div class="d-flex align-items-center">
+      <div class="m-2">
         <i class="fa-solid fa-location-dot"></i>
       </div>
-      <div>
+      <div class="ms-2 pt-3">
         <h3>Point de rendez-vous</h3>
-        <p>WESTERN UNION</p>
-        <p>15 Bd de la Villette, 75018 Paris</p>
+        <p>CITY-PHARMA : <%= @address %></p>
       </div>
     </div>
     <% elsif @request.pickup_type == "Retrait Ressourcerie" %>
-      <h3>Ressourcerie Le Poulpe</h3>
-      <p><i class="fa-solid fa-location-dot"></i> 4 Bis Rue d'Oran, 75018 Paris, France</p>
-      <p><i class="fa-solid fa-calendar"></i> <%= @request.pickup_date.strftime("%d.%m.%Y") %>: 11:00 - 20:00</p>
+      <div class="d-flex align-items-center">
+        <div class="m-2">
+          <i class="fa-solid fa-calendar"></i>
+        </div>
+        <div class="ms-2 pt-3">
+          <h3>Date de Retrait</h3>
+          <p><%= @request.pickup_date.strftime("%d.%m.%Y") %> : 11:00 - 20:00</p>
+        </div>
+      </div>
+      <div class="d-flex align-items-center">
+        <div class="m-2">
+          <i class="fa-solid fa-location-dot"></i>
+        </div>
+        <div class="ms-2 pt-3">
+          <h3>Ressourcerie Le Poulpe</h3>
+          <p><%= @address %></p>
+        </div>
+      </div>
     <% end %>
-    <div class="d-flex justify-content-center mt-5 mb-5">
-  <div style="width: 300px; height: 300px;"
-    data-controller="map"
-    data-map-markers-value="<%= @markers.to_json %>"
-    data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+    <div class="d-flex justify-content-center align-item-bottom mt-3 mb-3">
+      <div style="width: 300px; height: 300px;"
+        data-controller="map"
+        data-map-markers-value="<%= @markers.to_json %>"
+        data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+      </div>
+    </div>
   </div>
 </div>
-  </div>
-</div>
+
+<p><i class="fa-solid fa-arrow-rotate-left mt-3 ms-4" ></i><%= link_to "Retour au tableau de bord", dashboard_path(), class: "back-link ms-2" %></p>
