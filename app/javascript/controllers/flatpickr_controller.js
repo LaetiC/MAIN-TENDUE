@@ -4,10 +4,6 @@ import flatpickr from "flatpickr";
 export default class extends Controller {
   static targets = [ 'pickup_date', 'pickup_type' ]
 
-  connect() {
-    console.log("salut")
-    this.element.addEventListener('pickuptype-autocomplete:added', this.update)
-  }
 
   update() {
     console.log("update")

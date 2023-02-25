@@ -13,8 +13,8 @@ application.register("hello", HelloController)
 import PickuptypeAutocompleteController from "./pickuptype_autocomplete_controller"
 application.register("pickuptype-autocomplete", PickuptypeAutocompleteController)
 
-import FlatpickrController from "./flatpickr_controller"
-application.register("flatpickr", FlatpickrController)
+// import FlatpickrController from "./flatpickr_controller"
+// application.register("flatpickr", FlatpickrController)
 
 import VisibilityController from "./visibility_controller"
 application.register("visibility", VisibilityController)
