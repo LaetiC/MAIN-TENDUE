@@ -1,28 +1,42 @@
 <%# ajout calendrier pour choix date %>
 
 <div class="white-card" data-controller="pickuptype-autocomplete">
-  <h3 class="mb-4">Choisir votre mode de retrait</h3>
+  <h2 class="mb-4">Choisissez votre mode de retrait</h2>
 
-  <div class="grid-display mb-5">
-    <div class="card-small" data-value="Dépôt Maraude" data-action="click->pickuptype-autocomplete#maraude" data-pickuptype-autocomplete-target="maraude">
-      <h3> Prochaine maraude </h3>
-      <p> Mardi et Jeudi </p>
-      <p> 19:00 - 22:00 </p>
-      <%= image_tag "maraude.jpg" %>
+  <div class="display-block mb-5">
+    <div class="card-small d-flex mb-3" data-value="Dépôt Maraude" data-action="click->pickuptype-autocomplete#maraude" data-pickuptype-autocomplete-target="maraude">
+      <%= image_tag "maraude.jpg", class:"me-2" %>
+      <div class="d-flex flex-column bd-highlight mb-3 mt-1">
+        <div class="mb-2">
+          <h3> Maraude </h3>
+        </div>
+        <div>
+          <p> Tous les Mardi et Jeudi </p>
+          <p> 19:00 - 22:00 </p>
+        </div>
+      </div>
     </div>
-    <div class="card-small" data-value="Retrait Ressourcerie" data-action="click->pickuptype-autocomplete#ressourcerie" data-pickuptype-autocomplete-target="ressourcerie">
-      <h3> Ressourcerie Le Poulpe </h3>
-      <p> 58 rue Doudeauville - 75018 Paris </p>
-      <p> 11:00 - 20:00 </p>
-      <%= image_tag "ressourcerie.jpg" %>
+    <div class="card-small d-flex" data-value="Retrait Ressourcerie" data-action="click->pickuptype-autocomplete#ressourcerie" data-pickuptype-autocomplete-target="ressourcerie">
+      <%= image_tag "ressourcerie.jpg", class:"me-2" %>
+      <div class="d-flex flex-column bd-highlight mb-3 mt-1">
+        <div class="mb-2">
+          <h3> Ressourcerie Le Poulpe </h3>
+        </div>
+        <div>
+          <p> 4bis rue d'Oran, 75018 Paris </p>
+          <p> 11:00 - 20:00 </p>
+        </div>
+      </div>
     </div>
   </div>
 
   <div data-controller="flatpickr">
     <%= simple_form_for @request do |form| %>
-      <%= form.input :pickup_type,
-                      collection: ["Dépôt Maraude", "Retrait Ressourcerie"],
-                      input_html: {data: {pickuptype_autocomplete_target: "pickuptype" }}%>
+      <div class="d-none">
+        <%= form.input :pickup_type,
+                        collection: ["Dépôt Maraude", "Retrait Ressourcerie"],
+                        input_html: {data: {pickuptype_autocomplete_target: "pickuptype"}}%>
+      </div>
       <%= form.input :pickup_date, label: "A quelle date souhaitez-vous le retirer?", as: :string, input_html: {data: { pickuptype_autocomplete_target: 'pickup_date' } }%>
       <%= form.button :submit, "Confirmer", class: "btn-yellow d-grid mx-auto" %>
     <% end %>
