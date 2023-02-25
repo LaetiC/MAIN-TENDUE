@@ -2,9 +2,21 @@
   <h2>Faites votre demande ici :</h2>
   <%= simple_form_for @request do |f| %>
     <%= f.input :category,
-                label: "Catégorie",
-                collection: ["Hygiène", "Paramédical", "Petit électroménager", "Puériculture"],
-                prompt: 'Sélectionnez votre catégorie de besoin' %>
+                as: :radio_buttons,
+                collection_wrapper_tag: 'div',
+                collection_wrapper_class: 'category-wrapper',
+                item_wrapper_class: 'category-item',
+                input_html: {class: 'category-selector'},
+                collection: Request::CATEGORIES,
+                label_method: ->(cat){ if cat == "Hygiène"
+                  "<div><i class=\"fa-solid fa-pump-soap fa-2xl\"></i><br><p>Hygiene</p></div>".html_safe
+                  elsif cat == "Paramédical"
+                  "<div><i class=\"fa-solid fa-suitcase-medical fa-2xl\"></i><p>Paramedical</p></div>".html_safe
+                  elsif cat == "Petit électroménager"
+                  "<div><i class=\"fa-solid fa-plug fa-2xl\"></i><p>Petit electromenager</p></div>".html_safe
+                  elsif cat == "Puériculture"
+                  "<div><i class=\"fa-solid fa-children fa-2xl\"></i><p>Puericulture</p></div>".html_safe
+                  end } %>
     <%= f.input :needed_item,
                 label: "Votre besoin ?" %>
     <%= f.input :description,
@@ -13,3 +25,12 @@
     <%= f.submit 'Envoyer ma demande', class: "btn my-3" %>
   <% end %>
 </div>
+    <%#= f.input :category,
+                as: :radio_buttons,
+                collection_wrapper_tag: 'div',
+                collection_wrapper_class: 'category-wrapper',
+                item_wrapper_class: 'category-item',
+                input_html: {class: 'category-selector'},
+                collection: Request::CATEGORIES %>
+
+<i class="fa-solid fa-eye"></i>

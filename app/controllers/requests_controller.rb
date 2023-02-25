@@ -1,7 +1,7 @@
 class RequestsController < ApplicationController
   include ActionView::Helpers::UrlHelper
   include ActionView::Helpers::SanitizeHelper
-  before_action :set_request, only: %i[show update confirmation destroy edit edit_pickup update_pickup update_delivered]
+  before_action :set_request, only: %i[show update confirmation dropoff destroy edit edit_pickup update_pickup update_delivered]
 
   def new
     @request = Request.new
@@ -44,6 +44,9 @@ class RequestsController < ApplicationController
     end
   end
 
+  def dropoff
+  end
+
   def show
   end
 
@@ -52,7 +55,11 @@ class RequestsController < ApplicationController
 
   def update
     if @request.update(update_params)
-      redirect_to request_confirmation_path
+      if params[:request][:create_nested_item]
+        create_nested_item
+      else
+        redirect_to request_confirmation_path
+      end
     else
       render :edit_pickup
     end
@@ -72,10 +79,20 @@ class RequestsController < ApplicationController
   end
 
   def update_params
-    params.require(:request).permit(:pickup_type, :pickup_date)
+    params.require(:request).permit(:pickup_type, :pickup_date, :dropoff_date)
   end
 
   def set_request
     @request = Request.find(params[:id])
+  end
+
+  def create_nested_item
+    @item = Item.new(name: @request.needed_item, category: @request.category)
+    @request.item = @item
+    @request.status = "Besoin trouvé"
+    @item.user = current_user
+    @request.save
+    @item.save
+    redirect_to dashboard_path(display_donation: true), status: :see_other
   end
 end

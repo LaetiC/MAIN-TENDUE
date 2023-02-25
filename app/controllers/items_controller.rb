@@ -29,17 +29,6 @@ class ItemsController < ApplicationController
     redirect_to item_index_path(@item)
   end
 
-  def create_nested_item
-    @request = Request.find(params[:request_id])
-    @item = Item.new(name: @request.needed_item, category: @request.category)
-    @request.item = @item
-    @request.status = "Besoin trouvé"
-    @item.user = current_user
-    @request.save
-    @item.save
-    redirect_to dashboard_path, status: :see_other
-  end
-
   def update_nested_item # item_delivered_at_ressourcerie
     @request = Request.find(params[:request_id])
     @item = @request.item

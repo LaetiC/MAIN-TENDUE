@@ -7,6 +7,12 @@ import { application } from "./application"
 import ChatroomSubscriptionController from "./chatroom_subscription_controller"
 application.register("chatroom-subscription", ChatroomSubscriptionController)
 
+import DisplayTabController from "./display_tab_controller"
+application.register("display-tab", DisplayTabController)
+
+import DropoffDateFlatpickrController from "./dropoff_date_flatpickr_controller"
+application.register("dropoff-date-flatpickr", DropoffDateFlatpickrController)
+
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
 
@@ -15,6 +21,9 @@ application.register("map", MapController)
 
 import PickuptypeAutocompleteController from "./pickuptype_autocomplete_controller"
 application.register("pickuptype-autocomplete", PickuptypeAutocompleteController)
+
+import TypedJsController from "./typed_js_controller"
+application.register("typed-js", TypedJsController)
 
 import VisibilityController from "./visibility_controller"
 application.register("visibility", VisibilityController)

@@ -3,18 +3,23 @@
       <%= image_tag "logo.png", style: 'height:50px' %>
       <%= image_tag "logo-script.png", style: 'height:30px' %>
   </div>
-  <div class="container-pitch">
-    <h3>Le réseau social, vraiment social.</h3>
-    <p>Notre mission : mobiliser et outiller les citoyens pour accompagner les plus démunis.</p>
-  </div>
-  <div class="container-btn">
-    <% if user_signed_in? %>
-      <%= link_to "Entrer", dashboard_path(), class: "btn mb-3"%>
-    <% else %>
-      <%= link_to "Je m'inscris", new_user_registration_path, class: "btn mb-3"%>
-      <br>
-      <%= link_to "J'ai déjà un compte",  new_user_session_path, class: "btn"%>
-    <% end %>
+  <div class="row justify-content-left">
+    <div class="col-12 col-lg-6">
+      <div class="container-pitch mr-3">
+        <h3><span data-controller="typed-js" class="pitch-home"></span></h3>
+        <br>
+        <p class="pitch-home">Notre mission : mobiliser et outiller les citoyens pour accompagner les plus démunis.</p>
+      </div>
+      <div class="container-btn fixed-bottom mb-10">
+        <% if user_signed_in? %>
+          <%= link_to "Entrer", dashboard_path(), class: "btn mb-3"%>
+        <% else %>
+          <%= link_to "Je m'inscris", new_user_registration_path, class: "btn mb-3"%>
+          <br>
+          <%= link_to "J'ai déjà un compte",  new_user_session_path, class: "btn"%>
+        <% end %>
+      </div>
+    </div>
   </div>
 </div>
 

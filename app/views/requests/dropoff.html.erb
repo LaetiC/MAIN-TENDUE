@@ -1,0 +1,8 @@
+<div class="white-card" data-controller="dropoff-date-flatpickr">
+  <h3>Indiquez la date de dépôt</h3>
+  <%= simple_form_for @request do |f| %>
+    <%= f.input :dropoff_date, label: false, as: :string, input_html: {data: { dropoff_date_flatpickr_target: 'dropoff_date' } }%>
+    <%= f.hidden_field :create_nested_item, value: true %>
+    <%= f.button :submit, "Confirmer", data: {turbo_method: :post}, class: "btn-yellow d-grid mx-auto"%>
+  <% end %>
+</div>

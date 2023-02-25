@@ -19,7 +19,7 @@
           <% @pending_requests.reverse.each do |request| %>
             <li class="list-group-item row">
               <div class="col-md-11">
-                <p><strong><%= "#{request.created_at.strftime("%d.%m.%Y")} - #{request.needed_item}" %></strong></p>
+                <p><strong><%= "#{request.created_at.strftime("%d.%m.%Y")} - #{request.needed_item.capitalize}" %></strong></p>
                 <p><strong>Statut: </strong><%= request.status %>
                 <% if request.pickup_type? %>
                   <p><strong>Option de Retrait: </strong><%="#{request.pickup_type}, le: #{request.pickup_date&.strftime("%d.%m.%Y")}" %>
@@ -42,7 +42,7 @@
           <% @closed_requests.reverse.each do |request| %>
             <li class="list-group-item row">
               <div class="col-md-12">
-                <p><strong><%= "#{request.created_at.strftime("%d.%m.%Y")} - #{request.needed_item}" %></strong></p>
+                <p><strong><%= "#{request.created_at.strftime("%d.%m.%Y")} - #{request.needed_item.capitalize}" %></strong></p>
                 <p><strong>Statut: </strong><%= request.status %>
                 <% if request.status == "Remis" %>
                   <p><strong>Retiré: </strong><%="#{request.pickup_type}, le: #{request.pickup_date.strftime("%d.%m.%Y") if request.pickup_date?}" %>
@@ -56,7 +56,8 @@
   </div>
 
 <% elsif current_user.role == "Donateur" %>
-  <div class="white-card" style="overflow: scroll" data-controller="visibility">
+  <div class="white-card" style="overflow: scroll" data-controller="visibility display-tab"
+    data-display-donation-tab-value="<%= params[:display_donation] || false %>">
     <nav>
       <div class="nav nav-tabs" style="width: 100%" role="tablist">
         <button class="nav-link active justify-content-center" id="nav-alert-tab" style="width: 50%" data-bs-toggle="tab" data-bs-target="#nav-alert" type="button" role="tab" aria-controls="nav-alert" aria-selected="true">Mes alertes</button>
@@ -73,7 +74,7 @@
             </div>
             <div class="col-md-1">
               <div class="d-flex">
-                <%= link_to create_nested_item_path(request), data: {turbo_method: :post} do %>
+                <%= link_to request_dropoff_path(request) do %>
                   <span style="position: absolute; top: 0.3rem; right: 2rem; color: green; ">J'ai l'objet</span>
                   <i class="fa-solid fa-check"></i>
                 <% end %>
