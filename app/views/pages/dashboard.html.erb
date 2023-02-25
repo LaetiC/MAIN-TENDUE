@@ -56,11 +56,12 @@
   </div>
 
 <% elsif current_user.role == "Donateur" %>
-  <div class="white-card" style="overflow: scroll" data-controller="visibility">
+  <div class="white-card" style="overflow: scroll" data-controller="visibility display-tab"
+    data-display-donation-tab-value="<%= params[:display_donation] || false %>">
     <nav>
       <div class="nav nav-tabs" style="width: 100%" role="tablist">
         <button class="nav-link active" id="nav-alert-tab" style="width: 50%" data-bs-toggle="tab" data-bs-target="#nav-alert" type="button" role="tab" aria-controls="nav-alert" aria-selected="true">Mes alertes</button>
-        <button class="nav-link" id="nav-donation-tab" style="width: 50%" data-bs-toggle="tab" data-bs-target="#nav-donation" type="button" role="tab" aria-controls="nav-donation" aria-selected="false">Mes dons</button>
+        <button class="nav-link" id="nav-donation-tab" style="width: 50%" data-display-tab-target="donationTab" data-bs-toggle="tab" data-bs-target="#nav-donation" type="button" role="tab" aria-controls="nav-donation" aria-selected="false">Mes dons</button>
       </div>
     </nav>
     <div class="tab-content" id="nav-tabContent">
@@ -73,7 +74,7 @@
             </div>
             <div class="col-md-1">
               <div class="d-flex">
-                <%= link_to create_nested_item_path(request), data: {turbo_method: :post} do %>
+                <%= link_to request_dropoff_path(request) do %>
                   <span style="position: absolute; top: 0.3rem; right: 2rem; color: green; ">J'ai l'objet</span>
                   <i class="fa-solid fa-check"></i>
                 <% end %>
