@@ -10,11 +10,11 @@ application.register("chatroom-subscription", ChatroomSubscriptionController)
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
 
-import PickuptypeAutocompleteController from "./pickuptype_autocomplete_controller"
-application.register("pickuptype-autocomplete", PickuptypeAutocompleteController)
+import MapController from "./map_controller"
+application.register("map", MapController)
 
-// import FlatpickrController from "./flatpickr_controller"
-// application.register("flatpickr", FlatpickrController)
+// import PickuptypeAutocompleteController from "./pickuptype_autocomplete_controller"
+// application.register("pickuptype-autocomplete", PickuptypeAutocompleteController)
 
 import VisibilityController from "./visibility_controller"
 application.register("visibility", VisibilityController)

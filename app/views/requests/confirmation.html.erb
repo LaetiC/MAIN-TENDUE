@@ -34,5 +34,12 @@
       <p><i class="fa-solid fa-location-dot"></i> 4 Bis Rue d'Oran, 75018 Paris, France</p>
       <p><i class="fa-solid fa-calendar"></i> <%= @request.pickup_date.strftime("%d.%m.%Y") %>: 11:00 - 20:00</p>
     <% end %>
+    <div class="d-flex justify-content-center mt-5 mb-5">
+  <div style="width: 300px; height: 300px;"
+    data-controller="map"
+    data-map-markers-value="<%= @markers.to_json %>"
+    data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+  </div>
+</div>
   </div>
 </div>
