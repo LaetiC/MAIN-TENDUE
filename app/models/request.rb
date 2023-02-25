@@ -8,4 +8,6 @@ class Request < ApplicationRecord
 
   scope :pending, -> { where(status: ["En recherche", "Besoin trouvé", "A la ressourcerie"]) } #syntaxe à vérifier pour status multiples
   scope :closed, -> { where(status: ["Remis", "Annulée"]) } #syntaxe à vérifier pour status multiples
+
+  CATEGORIES = ["Hygiène", "Paramédical", "Petit électroménager", "Puériculture"]
 end

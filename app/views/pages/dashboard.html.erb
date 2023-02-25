@@ -19,7 +19,7 @@
           <% @pending_requests.reverse.each do |request| %>
             <li class="list-group-item row">
               <div class="col-md-11">
-                <p><strong><%= "#{request.created_at.strftime("%d.%m.%Y")} - #{request.needed_item}" %></strong></p>
+                <p><strong><%= "#{request.created_at.strftime("%d.%m.%Y")} - #{request.needed_item.capitalize}" %></strong></p>
                 <p><strong>Statut: </strong><%= request.status %>
                 <% if request.pickup_type? %>
                   <p><strong>Option de Retrait: </strong><%="#{request.pickup_type}, le: #{request.pickup_date.strftime("%d.%m.%Y")}" %>
@@ -42,7 +42,7 @@
           <% @closed_requests.reverse.each do |request| %>
             <li class="list-group-item row">
               <div class="col-md-12">
-                <p><strong><%= "#{request.created_at.strftime("%d.%m.%Y")} - #{request.needed_item}" %></strong></p>
+                <p><strong><%= "#{request.created_at.strftime("%d.%m.%Y")} - #{request.needed_item.capitalize}" %></strong></p>
                 <p><strong>Statut: </strong><%= request.status %>
                 <% if request.status == "Remis" %>
                   <p><strong>Retiré: </strong><%="#{request.pickup_type}, le: #{request.pickup_date.strftime("%d.%m.%Y") if request.pickup_date?}" %>
