@@ -42,15 +42,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_23_204044) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
-  create_table "apartments", force: :cascade do |t|
-    t.string "name"
-    t.string "address"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.float "latitude"
-    t.float "longitude"
-  end
-
   create_table "chatrooms", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -68,7 +59,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_23_204044) do
     t.string "name"
     t.text "description"
     t.string "category"
-    t.text "status", default: "created"
+    t.text "status", default: "Objet trouvé"
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
