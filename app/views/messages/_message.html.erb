@@ -1,7 +1,7 @@
 <div id="message-">
   <small>
     <strong><%= message.user.first_name %></strong>
-    <i><%= message.created_at.strftime("%a %e %b at %l:%M %p") %></i>
+    <i><%= l(message.created_at).sub("+0000", "")%></i> 
   </small>
   <p><%= message.content.html_safe %></p>
 </div>
