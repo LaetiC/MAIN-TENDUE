@@ -16,5 +16,8 @@ application.register("map", MapController)
 import PickuptypeAutocompleteController from "./pickuptype_autocomplete_controller"
 application.register("pickuptype-autocomplete", PickuptypeAutocompleteController)
 
+import TypedJsController from "./typed_js_controller"
+application.register("typed-js", TypedJsController)
+
 import VisibilityController from "./visibility_controller"
 application.register("visibility", VisibilityController)
