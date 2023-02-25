@@ -8,6 +8,7 @@ Rails.application.routes.draw do
 
   resources :items, except: [:destroy, :show]
   get '/requests/:id/confirmation', to: 'requests#confirmation', as: :request_confirmation
+  get '/requests/:id/dropoff', to: 'requests#dropoff', as: :request_dropoff
 
   get '/dashboard', to: 'pages#dashboard'
 
