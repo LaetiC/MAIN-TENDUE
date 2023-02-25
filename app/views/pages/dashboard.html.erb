@@ -22,7 +22,7 @@
                 <p><strong><%= "#{request.created_at.strftime("%d.%m.%Y")} - #{request.needed_item}" %></strong></p>
                 <p><strong>Statut: </strong><%= request.status %>
                 <% if request.pickup_type? %>
-                  <p><strong>Option de Retrait: </strong><%="#{request.pickup_type}, le: #{request.pickup_date&.strftime("%d.%m.%Y")}" %>
+                  <p><strong>Option de Retrait: </strong><%="#{request.pickup_type}, le: #{request.pickup_date.strftime("%d.%m.%Y")}" %>
                   <p><%= link_to "Confirmez la réception", update_delivered_path(request), data: {turbo_method: :patch}, class: "btn-yellow px-2 py-1" %></p>
                 <% elsif request.status == "A la ressourcerie" && request.pickup_type == nil %>
                   <p><%= link_to "Choisir votre option de retrait", edit_pickup_path(request), class: "btn-yellow px-2 py-1" %></p>
@@ -71,7 +71,7 @@
               <p><strong><%= "#{request.created_at.strftime("%d.%m.%Y")} - #{request.needed_item}"%></strong></p>
               <p><%= "#{request.description}" %></p>
             </div>
-            <div class="col-md-1" data-controller="dropoffdate">
+            <div class="col-md-1">
               <%= link_to create_nested_item_path(request), data: {turbo_method: :post} do %>
                 <i class="fa-solid fa-check"></i>
               <% end %>
