@@ -71,7 +71,7 @@
               <p><strong><%= "#{request.created_at.strftime("%d.%m.%Y")} - #{request.needed_item}"%></strong></p>
               <p><%= "#{request.description}" %></p>
             </div>
-            <div class="col-md-1">
+            <div class="col-md-1" data-controller="dropoffdate">
               <%= link_to create_nested_item_path(request), data: {turbo_method: :post} do %>
                 <i class="fa-solid fa-check"></i>
               <% end %>
