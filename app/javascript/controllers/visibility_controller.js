@@ -9,11 +9,9 @@ export default class extends Controller {
     });
   }
 
-  hide() {
-    this.hideableTargets.forEach(el => {
-      el.hidden = true
-    });
-  }
+  hide(event) {
+    event.currentTarget.closest(".list-group-item").hidden = true
+    };
 
   toggle() {
     this.hideableTargets.forEach((el) => {

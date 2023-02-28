@@ -24,11 +24,13 @@ export default class extends Controller {
   }
 
   updateRessourcerie() {
+    console.log(this.pickup_dateTarget)
+    const dropoffDate = this.pickup_dateTarget.dataset.drop
     flatpickr(this.pickup_dateTarget, {
       altInput: true,
       altFormat: "F j, Y",
       dateFormat: "Y-m-d",
-      minDate: "today",
+      minDate: dropoffDate,
       maxDate: new Date().fp_incr(8),
       "disable": [
         function (date) {
