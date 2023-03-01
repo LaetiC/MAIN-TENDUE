@@ -11,7 +11,7 @@ export default class extends Controller {
 
   hide(event) {
     event.currentTarget.closest(".list-group-item").hidden = true
-    };
+  };
 
   toggle() {
     this.hideableTargets.forEach((el) => {
