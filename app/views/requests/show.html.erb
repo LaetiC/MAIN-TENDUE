@@ -16,11 +16,13 @@
 
 
   <p><strong>Statut : </strong><%= @request.status %></p>
-  <% if @request.dropoff_date? && @request.pickup_type == nil %>
+  <% if @request.dropoff_date? && @request.status == "A la ressourcerie" && @request.pickup_type == nil %>
     <p><strong>Déposé à la Ressourcerie le : </strong><%= @request.dropoff_date.strftime("%d.%m.%Y") %></p>
     <p class="mt-4"><%= link_to "Choisir votre option de retrait", edit_pickup_path(@request), class: "btn-yellow px-2 py-1" %></p>
   <% elsif @request.dropoff_date? %>
     <p><strong>Déposé à la Ressourcerie le : </strong><%= @request.dropoff_date.strftime("%d.%m.%Y") %></p>
+  <% elsif @request.status == "En recherche" %>
+    <p class="mt-4"><%= link_to "Annuler ma demande", cancel_request_path(@request), data: {turbo_method: :patch}, class: "btn-cancel px-2 py-1" %></p>
   <% end %>
 
   <% if @request.status == "A la ressourcerie" && @request.pickup_date? %>
