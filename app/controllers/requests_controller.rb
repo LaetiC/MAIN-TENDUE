@@ -1,7 +1,7 @@
 class RequestsController < ApplicationController
   include ActionView::Helpers::UrlHelper
   include ActionView::Helpers::SanitizeHelper
-  before_action :set_request, only: %i[show update confirmation availability dropoff destroy edit edit_pickup update_pickup update_delivered]
+  before_action :set_request, only: %i[show update confirmation availability dropoff destroy edit cancel edit_pickup update_pickup update_delivered]
 
   def new
     @request = Request.new
@@ -25,7 +25,8 @@ class RequestsController < ApplicationController
 
   def cancel
     @request.status = "Annulée"
-    redirect_to dashboard_path, status: :see_other
+    @request.save
+    redirect_to request_path(@request), status: :see_other
   end
 
   def index

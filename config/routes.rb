@@ -18,6 +18,8 @@ Rails.application.routes.draw do
 
   patch '/requests/:id/delivered', to: 'requests#update_delivered', as: :update_delivered
 
+  patch '/requests/:id/cancel', to: 'requests#cancel', as: :cancel_request
+
   resources :items, except: [:destroy, :show]
 
   post '/requests/:request_id/items', to: 'items#create_nested_item', as: :create_nested_item
