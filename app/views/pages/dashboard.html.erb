@@ -15,36 +15,76 @@
     </nav>
     <div class="tab-content" id="nav-tabContent">
       <div class="tab-pane fade show active" id="nav-pending" role="tabpanel" aria-labelledby="nav-pending-tab" tabindex="0">
-      <h3 class="dashboard-subtitle mt-3">À récuperer</h3>
-        <ul class="list-group list-group-flush">
-          <% @pending_requests.reverse.each do |request| %>
-            <% if request.status == "A la ressourcerie" && request.pickup_date? %>
-              <li class="list-group-item row">
-                <div class="col-md-11">
-                  <p><strong><%= "#{request.created_at.strftime("%d.%m.%Y")} - #{request.needed_item.capitalize}" %></strong></p>
-                  <p><strong>Statut: </strong><%= request.status %>
-                    <p><strong>Option de Retrait: </strong><%="#{request.pickup_type}, le: #{request.pickup_date&.strftime("%d.%m.%Y")}" %>
+        <h3 class="dashboard-subtitle mt-3">À récuperer</h3>
+          <ul class="list-group list-group-flush">
+            <% @pending_requests.reverse.each do |request| %>
+              <% if request.status == "A la ressourcerie" && request.pickup_date? %>
+                <li class="list-group-item row">
+                  <div class="col-md-11">
+                    <p><strong><%= "#{request.created_at.strftime("%d.%m.%Y")} - #{request.needed_item.capitalize}" %></strong></p>
+                    <p><strong>Statut: </strong><%= request.status %>
+                    <p><strong>Option de Retrait: </strong><%="#{request.pickup_type}, le #{request.pickup_date.strftime("%d.%m.%Y")}" %>
                     <p><%= link_to "Confirmez la réception", update_delivered_path(request), data: {turbo_method: :patch}, class: "btn-yellow px-2 py-1" %></p>
-                </div>
-                <div class="col-md-1 float-right">
-                  <%= link_to request_path(request) do %>
-                    <i class="fa-solid fa-eye"></i>
-                  <% end %>
-                </div>
-              </li>
+                  </div>
+                  <div class="col-md-1 float-right">
+                    <%= link_to request_path(request) do %>
+                      <i class="fa-solid fa-eye"></i>
+                    <% end %>
+                  </div>
+                </li>
+              <% end %>
             <% end %>
-          <% end %>
-        </ul>
-      <h3 class="dashboard-subtitle mt-3">En cours de recherche</h3>
+          </ul>
+          <div class="separation-line mt-3"></div>
+          <div class="mt-3"></div>
+          <ul class="list-group list-group-flush">
+            <% @pending_requests.reverse.each do |request| %>
+              <% if request.status == "A la ressourcerie" && request.pickup_type == nil %>
+                <li class="list-group-item row">
+                  <div class="col-md-11">
+                    <p><strong><%= "#{request.created_at.strftime("%d.%m.%Y")} - #{request.needed_item.capitalize}" %></strong></p>
+                    <p><strong>Statut: </strong><%= request.status %>
+                    <p><%= link_to "Choisir votre option de retrait", edit_pickup_path(request), class: "btn-yellow px-2 py-1" %></p>
+                  </div>
+                  <div class="col-md-1 float-right">
+                    <%= link_to request_path(request) do %>
+                      <i class="fa-solid fa-eye"></i>
+                    <% end %>
+                  </div>
+                </li>
+              <% end %>
+            <% end %>
+          </ul>
+        <div class="separation-line mt-3"></div>
+        <h3 class="dashboard-subtitle mt-3">En cours de recherche</h3>
+          <ul class="list-group list-group-flush">
+            <% @pending_requests.reverse.each do |request| %>
+              <% if request.pickup_type == nil && request.status != "A la ressourcerie" %>
+                <li class="list-group-item row">
+                  <div class="col-md-11">
+                    <p><strong><%= "#{request.created_at.strftime("%d.%m.%Y")} - #{request.needed_item.capitalize}" %></strong></p>
+                    <p><strong>Statut: </strong><%= request.status %>
+                  </div>
+                  <div class="col-md-1 float-right">
+                    <%= link_to request_path(request) do %>
+                      <i class="fa-solid fa-eye"></i>
+                    <% end %>
+                  </div>
+                </li>
+              <% end %>
+            <% end %>
+          </ul>
+      </div>
+
+      <div class="tab-pane fade" id="nav-closed" role="tabpanel" aria-labelledby="nav-closed-tab" tabindex="0">
         <ul class="list-group list-group-flush">
-          <% @pending_requests.reverse.each do |request| %>
-          <% if request.pickup_type == nil %>
+          <% @closed_requests.reverse.each do |request| %>
             <li class="list-group-item row">
               <div class="col-md-11">
                 <p><strong><%= "#{request.created_at.strftime("%d.%m.%Y")} - #{request.needed_item.capitalize}" %></strong></p>
                 <p><strong>Statut: </strong><%= request.status %>
-                <% if request.status == "A la ressourcerie" && request.pickup_type == nil %>
-                  <p><%= link_to "Choisir votre option de retrait", edit_pickup_path(request), class: "btn-yellow px-2 py-1" %></p>
+                <% if request.status == "Remis" %>
+                  <p><strong>Retiré: </strong><%="#{request.pickup_type}, le: #{request.pickup_date.strftime("%d.%m.%Y") if request.pickup_date?}" %>
                 <% end %>
               </div>
               <div class="col-md-1 float-right">
@@ -53,28 +93,11 @@
                 <% end %>
               </div>
             </li>
-            <% end %>
-          <% end %>
-        </ul>
-      </div>
-      <div class="tab-pane fade" id="nav-closed" role="tabpanel" aria-labelledby="nav-closed-tab" tabindex="0">
-        <ul class="list-group list-group-flush">
-          <% @closed_requests.reverse.each do |request| %>
-            <li class="list-group-item row">
-              <div class="col-md-12">
-                <p><strong><%= "#{request.created_at.strftime("%d.%m.%Y")} - #{request.needed_item.capitalize}" %></strong></p>
-                <p><strong>Statut: </strong><%= request.status %>
-                <% if request.status == "Remis" %>
-                  <p><strong>Retiré: </strong><%="#{request.pickup_type}, le: #{request.pickup_date.strftime("%d.%m.%Y") if request.pickup_date?}" %>
-                <% end %>
-              </div>
-            </li>
           <% end %>
         </ul>
       </div>
     </div>
   </div>
-
 <% elsif current_user.role == "Donateur" %>
   <div class="white-card" style="overflow: scroll" data-controller="visibility display-tab">
     <nav>
@@ -122,15 +145,15 @@
         <div class="separation-line mt-3">
         </div>
         <h3 class="dashboard-subtitle mt-3">Historique des dons</h3>
-        <ul class="list-group list-group-flush">
-          <% @donor_answered_requests.reverse.each do |request| %>
-            <li class="list-group-item row">
-              <p><strong><%= "#{request.created_at.strftime("%d.%m.%Y")} - #{request.needed_item.capitalize}"%></strong></p>
-              <p><strong> Status : </strong><%= request.status%></p>
-              </p>
-            </li>
-          <% end %>
-        </ul>
+          <ul class="list-group list-group-flush">
+            <% @donor_answered_requests.reverse.each do |request| %>
+              <li class="list-group-item row">
+                <p><strong><%= "#{request.created_at.strftime("%d.%m.%Y")} - #{request.needed_item.capitalize}"%></strong></p>
+                <p><strong> Status : </strong><%= request.status%></p>
+                </p>
+              </li>
+            <% end %>
+          </ul>
       </div>
     </div>
   </div>
