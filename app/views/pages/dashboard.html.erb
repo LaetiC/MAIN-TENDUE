@@ -15,16 +15,35 @@
     </nav>
     <div class="tab-content" id="nav-tabContent">
       <div class="tab-pane fade show active" id="nav-pending" role="tabpanel" aria-labelledby="nav-pending-tab" tabindex="0">
+      <h3 class="dashboard-subtitle mt-3">À récuperer</h3>
         <ul class="list-group list-group-flush">
           <% @pending_requests.reverse.each do |request| %>
+            <% if request.status == "A la ressourcerie" && request.pickup_date? %>
+              <li class="list-group-item row">
+                <div class="col-md-11">
+                  <p><strong><%= "#{request.created_at.strftime("%d.%m.%Y")} - #{request.needed_item.capitalize}" %></strong></p>
+                  <p><strong>Statut: </strong><%= request.status %>
+                    <p><strong>Option de Retrait: </strong><%="#{request.pickup_type}, le: #{request.pickup_date&.strftime("%d.%m.%Y")}" %>
+                    <p><%= link_to "Confirmez la réception", update_delivered_path(request), data: {turbo_method: :patch}, class: "btn-yellow px-2 py-1" %></p>
+                </div>
+                <div class="col-md-1 float-right">
+                  <%= link_to request_path(request) do %>
+                    <i class="fa-solid fa-eye"></i>
+                  <% end %>
+                </div>
+              </li>
+            <% end %>
+          <% end %>
+        </ul>
+      <h3 class="dashboard-subtitle mt-3">En cours de recherche</h3>
+        <ul class="list-group list-group-flush">
+          <% @pending_requests.reverse.each do |request| %>
+          <% if request.pickup_type == nil %>
             <li class="list-group-item row">
               <div class="col-md-11">
                 <p><strong><%= "#{request.created_at.strftime("%d.%m.%Y")} - #{request.needed_item.capitalize}" %></strong></p>
                 <p><strong>Statut: </strong><%= request.status %>
-                <% if request.pickup_type? %>
-                  <p><strong>Option de Retrait: </strong><%="#{request.pickup_type}, le: #{request.pickup_date&.strftime("%d.%m.%Y")}" %>
-                  <p><%= link_to "Confirmez la réception", update_delivered_path(request), data: {turbo_method: :patch}, class: "btn-yellow px-2 py-1" %></p>
-                <% elsif request.status == "A la ressourcerie" && request.pickup_type == nil %>
+                <% if request.status == "A la ressourcerie" && request.pickup_type == nil %>
                   <p><%= link_to "Choisir votre option de retrait", edit_pickup_path(request), class: "btn-yellow px-2 py-1" %></p>
                 <% end %>
               </div>
@@ -34,6 +53,7 @@
                 <% end %>
               </div>
             </li>
+            <% end %>
           <% end %>
         </ul>
       </div>

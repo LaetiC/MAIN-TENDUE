@@ -14,7 +14,7 @@ class RequestsController < ApplicationController
     if @item.present?
       @item.update(status: "A la ressourcerie")
     else
-      Message.create(content: "Avez-vous l'objet suivant : #{strip_tags(@request.needed_item)} ? #{link_to 'Oui', dashboard_path}", chatroom_id: "1", user: User.first)
+      Message.create(content: "Nouvelle demande d'objet : #{strip_tags(@request.needed_item)} . #{link_to 'Voir détails de la demande', dashboard_path}", chatroom_id: "1", user: User.first)
     end
 
     @request.user = current_user
