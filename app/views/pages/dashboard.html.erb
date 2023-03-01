@@ -68,8 +68,12 @@
         <% @donor_requests.reverse.each do |request| %>
           <li class="list-group-item row" data-visibility-target="hideable">
             <div class="col-md-11">
-              <p><strong><%= "#{request.created_at.strftime("%d.%m.%Y")} - #{request.needed_item.capitalize}"%></strong></p>
-              <p><%= "#{request.description}" %></p>
+              <% if request.description == "" %>
+                <p><strong><%= "#{request.created_at.strftime("%d.%m.%Y")} - #{request.needed_item.capitalize}"%></strong></p><br>
+              <% else %>
+                <p><strong><%= "#{request.created_at.strftime("%d.%m.%Y")} - #{request.needed_item.capitalize}"%></strong></p>
+                <p><%= "#{request.description}" %></p>
+              <% end %>
             </div>
             <div class="col-md-1">
               <div class="d-flex">
@@ -87,7 +91,7 @@
       <div class="tab-pane fade" id="nav-donation" role="tabpanel" aria-labelledby="nav-donation-tab" tabindex="0">
         <h3 class="dashboard-subtitle mt-3">Dons à déposer</h3>
         <ul class="list-group list-group-flush">
-          <% @donor_pending_requests.reverse.each do |request| %>
+          <% @donor_pending_requests.each do |request| %>
             <li class="list-group-item row">
               <p><strong><%= "#{request.created_at.strftime("%d.%m.%Y")} - #{request.needed_item.capitalize}"%></strong></p>
               <p><strong> Status : </strong>A déposer le <%="#{request.dropoff_date.strftime("%d.%m.%Y")}"%></p>

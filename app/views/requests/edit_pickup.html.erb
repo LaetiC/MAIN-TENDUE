@@ -36,7 +36,7 @@
                         collection: ["Dépôt Maraude", "Retrait Ressourcerie"],
                         input_html: {data: {pickuptype_autocomplete_target: "pickuptype"}}%>
       </div>
-      <%= form.input :pickup_date, label: "A quelle date souhaitez-vous le retirer?", as: :string, input_html: {data: { pickuptype_autocomplete_target: 'pickup_date' } }%>
+      <%= form.input :pickup_date, label: "A quelle date souhaitez-vous le retirer?", as: :string, input_html: {data: { pickuptype_autocomplete_target: 'pickup_date', drop: @request.dropoff_date } }%>
       <%= form.button :submit, "Confirmer", class: "btn-yellow d-grid mx-auto" %>
     <% end %>
   </div>
