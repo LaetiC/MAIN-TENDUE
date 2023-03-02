@@ -59,7 +59,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_23_204044) do
     t.string "name"
     t.text "description"
     t.string "category"
-    t.text "status", default: "created"
+    t.text "status", default: "Objet trouvé"
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -72,7 +72,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_23_204044) do
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "role"
     t.index ["chatroom_id"], name: "index_messages_on_chatroom_id"
     t.index ["user_id"], name: "index_messages_on_user_id"
   end
