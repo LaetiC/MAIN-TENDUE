@@ -73,6 +73,15 @@ class RequestsController < ApplicationController
     redirect_to dashboard_path, status: :see_other
   end
 
+  def create_nested_item
+    @item = Item.new(name: @request.needed_item, category: @request.category)
+    @request.item = @item
+    @request.status = "Besoin trouvé"
+    @item.user = current_user
+    @request.save
+    @item.save
+    redirect_to dashboard_path(display_donation: true), status: :see_other
+  end
 
   private
 
@@ -88,13 +97,4 @@ class RequestsController < ApplicationController
     @request = Request.find(params[:id])
   end
 
-  def create_nested_item
-    @item = Item.new(name: @request.needed_item, category: @request.category)
-    @request.item = @item
-    @request.status = "Besoin trouvé"
-    @item.user = current_user
-    @request.save
-    @item.save
-    redirect_to dashboard_path(display_donation: true), status: :see_other
-  end
 end
