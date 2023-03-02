@@ -18,8 +18,9 @@ class RequestsController < ApplicationController
     end
 
     @request.user = current_user
-    @request.save
-    redirect_to request_path(@request)
+    if @request.save
+      redirect_to request_path(@request)
+    end
   end
 
   def edit

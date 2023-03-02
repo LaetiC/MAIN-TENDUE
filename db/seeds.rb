@@ -10,5 +10,5 @@ User.create(first_name: "Ressourcerie", last_name: "Le Poulpe", email: "ressourc
 User.create(first_name: "Jean Michel", last_name: "Boudin", email: "michmich@gmail.com", role:"Demandeur", password:"azerty")
 User.create(first_name: "Marie", last_name: "Dupont", email: "mariedupont@gmail.com", role:"Donateur", password:"azerty")
 
-Chatroom.create(name: "General Donateur")
-Chatroom.create(name: "General Demandeur")
+@Donateur = Chatroom.create(name: "General")
+@Demandeur = Chatroom.create(name: "General")
