@@ -34,10 +34,9 @@ class ItemsController < ApplicationController
     @item = @request.item
     @item.status = "Attribué"
     @request.status = "A la ressourcerie"
-    @request.dropoff_date = Time.now
     @item.save
     @request.save
-    redirect_to dashboard_path, status: :see_other
+    redirect_to dashboard_path(display_donation: true), status: :see_other
   end
 
   def edit

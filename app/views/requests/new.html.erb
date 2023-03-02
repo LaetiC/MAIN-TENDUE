@@ -2,6 +2,7 @@
   <h2>Faites votre demande ici :</h2>
   <%= simple_form_for @request do |f| %>
     <%= f.input :category,
+                label: "Catégorie",
                 as: :radio_buttons,
                 collection_wrapper_tag: 'div',
                 collection_wrapper_class: 'category-wrapper',
@@ -9,28 +10,23 @@
                 input_html: {class: 'category-selector'},
                 collection: Request::CATEGORIES,
                 label_method: ->(cat){ if cat == "Hygiène"
-                  "<div><i class=\"fa-solid fa-pump-soap fa-2xl\"></i><br><p>Hygiene</p></div>".html_safe
+                  "<div class=\"d-flex justify-content-center flex-column w-100 h-100 mt-4\"><i class=\"fa-solid fa-pump-soap fa-2xl text-center mb-4\"></i><p class=\"text-center\">Hygiène</p></div>".html_safe
                   elsif cat == "Paramédical"
-                  "<div><i class=\"fa-solid fa-suitcase-medical fa-2xl\"></i><p>Paramedical</p></div>".html_safe
+                  "<div class=\"d-flex justify-content-center flex-column w-100 h-100 mt-4\"><i class=\"fa-solid fa-suitcase-medical fa-2xl text-center mb-4\"></i><p class=\"text-center\">Paramédical</p></div>".html_safe
                   elsif cat == "Petit électroménager"
-                  "<div><i class=\"fa-solid fa-plug fa-2xl\"></i><p>Petit electromenager</p></div>".html_safe
+                  "<div class=\"d-flex justify-content-center flex-column w-100 h-100 mt-4\"><i class=\"fa-solid fa-plug fa-2xl text-center mb-4\"></i><p class=\"text-center\">Petit Electroménager</p></div>".html_safe
                   elsif cat == "Puériculture"
-                  "<div><i class=\"fa-solid fa-children fa-2xl\"></i><p>Puericulture</p></div>".html_safe
+                  "<div class=\"d-flex justify-content-center flex-column w-100 h-100 mt-4\"><i class=\"fa-solid fa-children fa-2xl text-center mb-4\"></i><p class=\"text-center\">Puériculture</p></div>".html_safe
+                  elsif cat == "Vêtement"
+                  "<div class=\"d-flex justify-content-center flex-column w-100 h-100 mt-4\"><i class=\"fa-solid fa-shirt fa-2xl text-center mb-4\"></i><p class=\"text-center\">Vêtement</p></div>".html_safe
+                  elsif cat == "Autres"
+                  "<div class=\"d-flex justify-content-center flex-column w-100 h-100 mt-4\"><i class=\"fa-solid fa-ellipsis fa-2xl text-center mb-4\"></i><p class=\"text-center\">Autres</p></div>".html_safe
                   end } %>
     <%= f.input :needed_item,
                 label: "Votre besoin ?" %>
     <%= f.input :description,
                 label: "Précisez votre demande",
                 as: :text %>
-    <%= f.submit 'Envoyer ma demande', class: "btn my-3" %>
+    <%= f.submit 'Envoyer ma demande', class: "btn my-5 d-flex mx-auto" %>
   <% end %>
 </div>
-    <%#= f.input :category,
-                as: :radio_buttons,
-                collection_wrapper_tag: 'div',
-                collection_wrapper_class: 'category-wrapper',
-                item_wrapper_class: 'category-item',
-                input_html: {class: 'category-selector'},
-                collection: Request::CATEGORIES %>
-
-<i class="fa-solid fa-eye"></i>

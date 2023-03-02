@@ -1,7 +1,7 @@
 class RequestsController < ApplicationController
   include ActionView::Helpers::UrlHelper
   include ActionView::Helpers::SanitizeHelper
-  before_action :set_request, only: %i[show update confirmation dropoff destroy edit edit_pickup update_pickup update_delivered]
+  before_action :set_request, only: %i[show update confirmation availability dropoff destroy edit cancel edit_pickup update_pickup update_delivered]
 
   def new
     @request = Request.new
@@ -10,17 +10,14 @@ class RequestsController < ApplicationController
   def create
     @request = Request.new(request_params)
     @item = Item.where("name ILIKE ? AND category = ? AND status = ?", "%#{@request.needed_item}%", "#{@request.category}", "Objet disponible").first
-
     if @item.present?
       @item.update(status: "A la ressourcerie")
     else
       Message.create(content: "Nouvelle demande d'objet : #{strip_tags(@request.needed_item)} . #{link_to 'Voir détails de la demande', dashboard_path}", chatroom_id: "1", user: User.first)
     end
-
     @request.user = current_user
-    if @request.save
-      redirect_to request_path(@request)
-    end
+    @request.save
+    redirect_to request_availability_path(@request)
   end
 
   def edit
@@ -28,7 +25,8 @@ class RequestsController < ApplicationController
 
   def cancel
     @request.status = "Annulée"
-    redirect_to dashboard_path, status: :see_other
+    @request.save
+    redirect_to request_path(@request), status: :see_other
   end
 
   def index
@@ -46,6 +44,9 @@ class RequestsController < ApplicationController
   end
 
   def dropoff
+  end
+
+  def availability
   end
 
   def show

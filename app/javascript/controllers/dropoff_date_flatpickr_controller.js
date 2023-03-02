@@ -5,7 +5,6 @@ import flatpickr from "flatpickr";
 export default class extends Controller {
   static targets = ['dropoff_date']
   connect() {
-    console.log("yo!")
     flatpickr(this.dropoff_dateTarget, {
       inline: true,
       altInput: true,
