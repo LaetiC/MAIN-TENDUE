@@ -58,4 +58,6 @@
   </div>
 </div>
 
-<p><i class="fa-solid fa-arrow-rotate-left mt-3 ms-4" ></i><%= link_to "Retour au tableau de bord", dashboard_path(), class: "back-link ms-2" %></p>
+<%= link_to dashboard_path() do %>
+  <p class="back-link"><i class="fa-solid fa-clipboard-user mt-3 ms-4 me-3"></i>Retour au Tableau de bord</p>
+<% end %>

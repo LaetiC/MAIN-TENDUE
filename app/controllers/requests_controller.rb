@@ -13,7 +13,7 @@ class RequestsController < ApplicationController
     if @item.present?
       @item.update(status: "A la ressourcerie")
     else
-      Message.create(content: "Nouvelle demande d'objet : #{strip_tags(@request.needed_item)} . #{link_to 'Voir détails de la demande', dashboard_path}", chatroom_id: "1", user: User.first)
+      Message.create(content: "Nouvelle demande d'objet : #{strip_tags(@request.needed_item.capitalize)}. #{link_to 'Voir détails de la demande', dashboard_path(), class: "btn mt-3 ms-3"}", chatroom_id: "1", user: User.first)
     end
     @request.user = current_user
     @request.save
@@ -70,7 +70,7 @@ class RequestsController < ApplicationController
   def update_delivered
     @request.status = "Remis"
     @request.save
-    redirect_to dashboard_path, status: :see_other
+    redirect_to request_path(@request), status: :see_other
   end
 
   def create_nested_item
