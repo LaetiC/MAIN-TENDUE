@@ -1,4 +1,6 @@
 class ItemsController < ApplicationController
+  include ActionView::Helpers::UrlHelper
+  include ActionView::Helpers::SanitizeHelper
   before_action :set_item, only: %i[update edit destroy]
 
   def new
@@ -36,6 +38,7 @@ class ItemsController < ApplicationController
     @request.status = "A la ressourcerie"
     @item.save
     @request.save
+    Message.create(content: "Bonne nouvelle!! Nous avons l'objet que vous cherchiez: #{strip_tags(@request.needed_item.capitalize)}. #{link_to 'Choisir mon option de retrait', edit_pickup_path(@request), class: "btn mt-3 ms-2"}", chatroom_id: "2", user: User.first)
     redirect_to dashboard_path(display_donation: true), status: :see_other
   end
 

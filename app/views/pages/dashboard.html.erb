@@ -85,7 +85,7 @@
                   <div class="col-md-11">
                     <p><strong><%= "#{request.created_at.strftime("%d.%m.%Y")} - #{request.needed_item.capitalize}" %></strong></p>
                     <p><strong>Statut: </strong><%= request.status %>
-                    <p><strong>Retiré: </strong><%="#{request.pickup_type}, le: #{request.pickup_date.strftime("%d.%m.%Y") if request.pickup_date?}" %>
+                    <p><strong>Retiré: </strong><%="#{request.pickup_type}, le #{request.pickup_date.strftime("%d.%m.%Y") if request.pickup_date?}" %>
                   </div>
                   <div class="col-md-1 float-right">
                     <%= link_to request_path(request) do %>
@@ -130,22 +130,24 @@
       <ul class="list-group list-group-flush tab-pane fade show active" id="nav-alert" role="tabpanel" aria-labelledby="nav-alert-tab" tabindex="0">
         <% @donor_requests.reverse.each do |request| %>
           <li class="list-group-item row" data-visibility-target="hideable">
-            <div class="col-md-11">
+            <div style="width: 14rem">
               <% if request.description == "" %>
-                <p><strong><%= "#{request.created_at.strftime("%d.%m.%Y")} - #{request.needed_item.capitalize}"%></strong></p><br>
+                <p style="margin-bottom: 2rem"><strong><%= "#{request.created_at.strftime("%d.%m.%Y")} - #{request.needed_item.capitalize}"%></strong></p><br>
               <% else %>
                 <p><strong><%= "#{request.created_at.strftime("%d.%m.%Y")} - #{request.needed_item.capitalize}"%></strong></p>
                 <p><%= "#{request.description}" %></p>
               <% end %>
             </div>
-            <div class="col-md-1">
+            <div>
               <div class="d-flex">
-                <%= link_to request_dropoff_path(request) do %>
-                  <span style="position: absolute; top: 0.3rem; right: 2rem; color: green; ">J'ai l'objet</span>
+                <%= link_to request_dropoff_path(request), class:"check-btn" do %>
+                  <span style="position: absolute; top: 0.3rem; right: 2rem; color: $green; ">Oui, j'ai !</span>
                   <i class="fa-solid fa-check"></i>
                 <% end %>
-                <span style="position: absolute; bottom: 0.5rem; right: 2rem; color: red; ">Je n'ai pas l'objet</span>
-                <i class="fa-solid fa-xmark" data-action="click->visibility#hide"></i>
+                <div class="hide-btn">
+                  <span style="position: absolute; bottom: 0.3rem; right: 2rem; color: $red; ">Non, je n'ai pas</span>
+                  <i class="fa-solid fa-xmark" data-action="click->visibility#hide"></i>
+                </div>
               </div>
             </div>
           </li>

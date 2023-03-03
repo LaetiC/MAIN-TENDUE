@@ -4,6 +4,11 @@
   border-radius: 2rem;
 }
 
+.btn-home {
+  width: 12rem;
+  font-size: larger
+}
+
 .btn-yellow {
   background-color: $mikado-light;
   min-width: 10rem;
@@ -28,4 +33,30 @@
   border-radius: 2rem;
   margin-top: 4rem;
   color: white
+}
+
+.check-btn {
+  width: 7rem;
+  border-radius: 2rem;
+  background-color: transparent;
+  border: 1px solid $green;
+  padding: 1rem;
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  color: $green;
+  text-align: center;
+}
+
+.hide-btn {
+  width: 10rem;
+  border-radius: 2rem;
+  background-color: transparent;
+  border: 1px solid $red;
+  padding: 1rem;
+  position: absolute;
+  bottom: 0.5rem;
+  right: 0.5rem;
+  color: $red;
+  text-align: center;
 }

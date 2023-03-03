@@ -33,7 +33,7 @@ a {
 }
 
 .fa-check {
-  color: green;
+  color: $green;
   position: absolute;
   top: 0.5rem;
   right: 0.5rem;
@@ -41,9 +41,9 @@ a {
 }
 
 .fa-xmark {
-  color: red;
+  color: $red;
   position: absolute;
-  bottom: 0.5rem;
+  bottom: 0.3rem;
   right: 0.8rem;
   font-size: larger;
 }

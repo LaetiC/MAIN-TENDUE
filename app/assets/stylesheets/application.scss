@@ -46,7 +46,7 @@ h3 {
 
 p {
   font-style: normal;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 400;
   color: $oxford-blue;
 }
@@ -69,13 +69,13 @@ p {
   color: $mikado-light;
 }
 
-#navbar-envelope {
-  color: $oxford-blue;
-}
-
 .back-link {
   text-decoration: none;
   color: $mikado-light;
+}
+
+.fa-clipboard-user {
+  font-size: medium
 }
 
 .separation-line {
