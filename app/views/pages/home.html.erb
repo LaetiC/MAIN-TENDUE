@@ -12,7 +12,7 @@
       </div>
       <div class="container-btn fixed-bottom mb-10">
         <% if user_signed_in? && current_user.role == "Donateur" %>
-          <%= link_to "Entrer", "/chatrooms/1_path", class: "btn btn-home mb-3"%>
+          <%= link_to "Entrer", "/chatrooms/1##{Chatroom.find(1).messages.last&.id}", data: { turbo: false }, class: "btn btn-home mb-3"%>
         <% elsif user_signed_in? && current_user.role == "Demandeur"%>
           <%= link_to "Entrer", dashboard_path(), class: "btn btn-home mb-3"%>
         <% else %>
