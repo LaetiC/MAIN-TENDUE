@@ -159,7 +159,7 @@
           <% @donor_pending_requests.reverse.each do |request| %>
             <li class="list-group-item row">
               <p><strong><%= "#{request.created_at.strftime("%d.%m.%Y")} - #{request.needed_item.capitalize}"%></strong></p>
-              <p><strong> Status : </strong>A déposer le <%="#{request.dropoff_date.strftime("%d.%m.%Y")}"%></p>
+              <p><strong> Statut : </strong>A déposer le <%="#{request.dropoff_date.strftime("%d.%m.%Y")}"%></p>
               <p><%= link_to "Confirmez le dépôt", update_nested_item_path(request), class: "btn-yellow px-3 py-2", data: {turbo_method: :patch} %></p>
             </li>
           <% end %>
@@ -171,7 +171,7 @@
             <% @donor_answered_requests.reverse.each do |request| %>
               <li class="list-group-item row">
                 <p><strong><%= "#{request.created_at.strftime("%d.%m.%Y")} - #{request.needed_item.capitalize}"%></strong></p>
-                <p><strong> Status : </strong><%= request.status%></p>
+                <p><strong> Statut : </strong><%= request.status%></p>
                 </p>
               </li>
             <% end %>
